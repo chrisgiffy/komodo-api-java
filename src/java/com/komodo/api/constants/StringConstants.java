@@ -57,6 +57,21 @@ public class StringConstants {
 	public static final String SEND_RAW_TRANSASCTION = "sendrawtransaction";
 	public static final String SIGN_RAW_TRANSACTION = "signrawtransaction";
 	public static final String CREATE_RAW_TRANSACTION = "createrawtransaction";
+	
+	//MINING BLOCK
+	public static final String GET_BLOCK_SUBSIDY = "getblocksubsidy";
+	public static final String GET_BLOCK_TEMPLATE = "getblocktemplate";
+	public static final String GET_LOCAL_SOLPS = "getlocalsolps";
+	public static final String GET_MINING_INFO = "getmininginfo";
+	public static final String GET_NETWORK_HASH_PS = "getnetworkhashps";
+	public static final String GET_NETWORK_SOLPS = "getnetworksolps";
+	public static final String PRIORITISE_TRANSACTION = "prioritisetransaction";
+	public static final String SUBMIT_BLOCK = "submitblock";
+	
+	//MINING GET BLOCK TEMPLATE MODES
+	public static final String TEMPLATE = "template";
+	public static final String PROPOSAL = "proposal";
+	public static final String DISABLED_CB = "disabledcb";
 
 	//ADDRESS PARAMS
 	public static final String ADDRESSES = "addresses";
