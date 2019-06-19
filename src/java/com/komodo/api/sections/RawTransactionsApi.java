@@ -5,8 +5,17 @@ import com.komodo.api.models.Configurations;
 import com.komodo.api.utils.KomodoUtil;
 
 public class RawTransactionsApi {
-	public String createRawTransaction(Configurations config, String paymentDisclosure) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.CREATE_RAW_TRANSACTION, "\""+paymentDisclosure+"\"");
+	public String createRawTransaction(Configurations config, String txId, int vout, String address, int value) {
+		StringBuilder params = new StringBuilder("[{\"txid\":\"");
+		params.append(txId);
+		params.append("\",\"vout\":");
+		params.append(vout);
+		params.append("}],{\"");
+		params.append(address);
+		params.append("\":");
+		params.append(value);
+		params.append("}");
+		String output = KomodoUtil.fireKomodo(config, StringConstants.CREATE_RAW_TRANSACTION, params.toString());
 		return output;
 	}
 	
@@ -35,8 +44,8 @@ public class RawTransactionsApi {
 		return output;
 	}
 	
-	public String signrawtransaction(Configurations config, String paymentDisclosure) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.SIGN_RAW_TRANSACTION, "\""+paymentDisclosure+"\"");
+	public String signrawtransaction(Configurations config, String hexString) {
+		String output = KomodoUtil.fireKomodo(config, StringConstants.SIGN_RAW_TRANSACTION, "\""+hexString+"\"");
 		return output;
 	}
 }

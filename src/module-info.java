@@ -1,7 +1,0 @@
-
-/**
- * @author chris
- *
- */
-module komodo {
-}
