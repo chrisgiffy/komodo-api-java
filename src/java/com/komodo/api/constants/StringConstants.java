@@ -8,7 +8,7 @@ public class StringConstants {
 	public static final String GET_ADDRESS_TXIDS = "getaddresstxids";
 	public static final String GET_ADDRESS_UTXOS = "getaddressutxos";
 	public static final String GET_SNAPSHOT = "getsnapshot";
-	
+
 	//BLOCKCHAIN BLOCK
 	public static final String COINSUPPLY = "coinsupply";
 	public static final String GET_BEST_BLOCK_HASH = "getbestblockhash";
@@ -34,21 +34,21 @@ public class StringConstants {
 	public static final String NOTARIES = "notaries";
 	public static final String VERIFY_CHAIN = "verifychain";
 	public static final String VERIFY_TXOUT_PROOF = "verifytxoutproof";
-	
+
 	//CONTROL BLOCK
 	public static final String GET_INFO = "getinfo";
 	public static final String HELP = "help";
 	public static final String STOP = "stop";
-	
+
 	//DISCLOSURE BLOCK
 	public static final String Z_VALIDATE_PAYMENT_DISCLOSURE = "z_validatepaymentdisclosure";
 	public static final String Z_GET_PAYMENT_DISCLOSURE = "z_getpaymentdisclosure";
-	
+
 	//GENERATE BLOCK
 	public static final String GENERATE = "generate";
 	public static final String GET_GENERATE = "getgenerate";
 	public static final String SET_GENERATE = "setgenerate";
-	
+
 	//RAW_TRANSACTIONS BLOCK
 	public static final String DECODE_RAW_TRANSACTION = "decoderawtransction";
 	public static final String DECODE_SCRIPT = "decodescript";
@@ -57,7 +57,7 @@ public class StringConstants {
 	public static final String SEND_RAW_TRANSASCTION = "sendrawtransaction";
 	public static final String SIGN_RAW_TRANSACTION = "signrawtransaction";
 	public static final String CREATE_RAW_TRANSACTION = "createrawtransaction";
-	
+
 	//MINING BLOCK
 	public static final String GET_BLOCK_SUBSIDY = "getblocksubsidy";
 	public static final String GET_BLOCK_TEMPLATE = "getblocktemplate";
@@ -67,11 +67,24 @@ public class StringConstants {
 	public static final String GET_NETWORK_SOLPS = "getnetworksolps";
 	public static final String PRIORITISE_TRANSACTION = "prioritisetransaction";
 	public static final String SUBMIT_BLOCK = "submitblock";
-	
+
 	//MINING GET BLOCK TEMPLATE MODES
 	public static final String TEMPLATE = "template";
 	public static final String PROPOSAL = "proposal";
 	public static final String DISABLED_CB = "disabledcb";
+
+	//MINING GET BLOCK TEMPLATE CAPABILITIES
+	public static final String LONG_POLL = "longpoll";
+	public static final String COIN_BASE_TXN = "coinbasetxn";
+	public static final String COIN_BASE_VALUE = "coinbasevalue";
+	public static final String SERVERLIST = "serverlist";
+	public static final String WORK_ID = "workid";
+	
+	//JUMBLR_BLOCK
+	public static final String JUMBLR_DEPOSIT = "jumblr_deposit";
+	public static final String JUMBLR_PAUSE = "jumblr_pause";
+	public static final String JUMBLR_RESUME = "jumblr_resume";
+	public static final String JUMBLR_SECRET = "jumblr_secret";
 
 	//ADDRESS PARAMS
 	public static final String ADDRESSES = "addresses";
@@ -79,6 +92,6 @@ public class StringConstants {
 	public static final String END = "end";
 	public static final String CHAININFO = "chainInfo";
 	public static final String TOP = "top";
-	
-	
+
+
 }
