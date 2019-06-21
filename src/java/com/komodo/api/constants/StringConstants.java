@@ -85,6 +85,32 @@ public class StringConstants {
 	public static final String JUMBLR_PAUSE = "jumblr_pause";
 	public static final String JUMBLR_RESUME = "jumblr_resume";
 	public static final String JUMBLR_SECRET = "jumblr_secret";
+	
+	//UTIL BLOCK
+	public static final String CREATE_MULTI_SIG = "createmultisig";
+	public static final String DECODE_CC_OPERET = "decodeccopret";
+	public static final String ESTIMATE_FEE = "estimatefee";
+	public static final String ESTIMATE_PRIORITY = "estimatepriority";
+	public static final String INVALIDATE_BLOCK = "invalidateblock";
+	public static final String RECONSIDER_BLOCK = "reconsiderblock";
+	public static final String TX_NOTORIZED_CONFIRMED = "txnotarizedconfirmed";
+	public static final String VALIDATE_ADDRESS = "validateaddress";
+	public static final String VERIFY_MESSAGE = "verifymessage";
+	public static final String Z_VALIDATE_ADDRESS = "z_validateaddress";
+	
+	//NETWORK BLOCK
+	public static final String ADD_NODE = "addnode";
+	public static final String CLEAR_BANNED = "clearbanned";
+	public static final String DISCONNECT_NODE = "disconnectnode";
+	public static final String GET_ADDED_NODE_INFO = "getaddednodeinfo";
+	public static final String GET_CONNECTION_COUNT = "getconnectioncount";
+	public static final String GET_DEPRECATION_INFO = "getdeprecationinfo";
+	public static final String GET_NET_TOTALS = "getnettotals";
+	public static final String GET_NETWORK_INFO = "getnetworkinfo";
+	public static final String GET_PEER_INFO = "getpeerinfo";
+	public static final String LIST_BANNED = "listbanned";
+	public static final String PING = "ping";
+	public static final String SET_BAN = "setban";
 
 	//ADDRESS PARAMS
 	public static final String ADDRESSES = "addresses";
@@ -92,6 +118,8 @@ public class StringConstants {
 	public static final String END = "end";
 	public static final String CHAININFO = "chainInfo";
 	public static final String TOP = "top";
+	
+	
 
 
 }
