@@ -1,22 +1,25 @@
 package com.komodo.api.sections;
 
-import com.komodo.api.constants.StringConstants;
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class DisclosureApi {
-	public String zGetPaymentDisclosure(Configurations config, String txId, int sjIndex, int outputIndex) {
+	public OutputModel zGetPaymentDisclosure(Configurations config, String txId, int sjIndex, int outputIndex) {
 		StringBuilder params = new StringBuilder("\"");
 		params.append(txId);
 		params.append("\",");
 		params.append(sjIndex);
 		params.append(",");
 		params.append(outputIndex);
-		String output = KomodoUtil.fireKomodo(config, StringConstants.Z_GET_PAYMENT_DISCLOSURE, params.toString());
-		return output;
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_GET_PAYMENT_DISCLOSURE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String zGetPaymentDisclosure(Configurations config, String txId, int sjIndex, int outputIndex, String message) {
+	public OutputModel zGetPaymentDisclosure(Configurations config, String txId, int sjIndex, int outputIndex, String message) {
 		StringBuilder params = new StringBuilder("\"");
 		params.append(txId);
 		params.append("\",");
@@ -26,12 +29,14 @@ public class DisclosureApi {
 		params.append(",\"");
 		params.append(message);
 		params.append("\"");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.Z_GET_PAYMENT_DISCLOSURE, params.toString());
-		return output;
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_GET_PAYMENT_DISCLOSURE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String zValidatePaymentDisclosure(Configurations config, String paymentDisclosure) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.Z_VALIDATE_PAYMENT_DISCLOSURE, "\""+paymentDisclosure+"\"");
-		return output;
+	public OutputModel zValidatePaymentDisclosure(Configurations config, String paymentDisclosure) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_VALIDATE_PAYMENT_DISCLOSURE, "\""+paymentDisclosure+"\"");
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 }

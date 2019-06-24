@@ -1,28 +1,35 @@
 package com.komodo.api.sections;
 
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class ControlApi {
 
-	public String getInfo(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_INFO, null);
-		return output;
+	public OutputModel getInfo(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_INFO, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String help(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.HELP, null);
-		return output;
+	public OutputModel help(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String help(Configurations config, String command) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.HELP, "\""+command+"\"");
-		return output;
+	public OutputModel help(Configurations config, String command) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, StringConstants.DOUBLE_QUOTE+command+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String stop(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.STOP, null);
-		return output;
+	public OutputModel stop(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.STOP, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 }

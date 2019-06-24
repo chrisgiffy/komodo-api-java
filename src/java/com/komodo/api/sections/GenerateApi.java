@@ -1,26 +1,32 @@
 package com.komodo.api.sections;
 
-import com.komodo.api.constants.StringConstants;
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class GenerateApi {
 
-	public String generate(Configurations config, int numBlocks) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GENERATE, ""+numBlocks);
-		return output;
+	public OutputModel generate(Configurations config, int numBlocks) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GENERATE, ""+numBlocks);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	public String getGenerate(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_GENERATE, null);
-		return output;
+	public OutputModel getGenerate(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_GENERATE, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	public String setGenerate(Configurations config, boolean generate) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.SET_GENERATE, ""+generate);
-		return output;
+	public OutputModel setGenerate(Configurations config, boolean generate) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, ""+generate);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String setGenerate(Configurations config, boolean generate, int genProcLimit) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.SET_GENERATE, generate+","+genProcLimit);
-		return output;
+	public OutputModel setGenerate(Configurations config, boolean generate, int genProcLimit) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, generate+","+genProcLimit);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 }
