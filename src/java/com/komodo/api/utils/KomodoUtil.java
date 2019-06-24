@@ -45,7 +45,6 @@ public class KomodoUtil {
 
 
 			String temp;
-			System.out.println("Output from Server .... \n");
 			while ((temp = br.readLine()) != null) {
 				output.append(temp);
 				//System.out.println(temp);

@@ -9,12 +9,13 @@ public class StringConstants {
 	public static final String OPEN_BRACKET = "[";
 	public static final String CLOSE_BRACKET = "]";
 	public static final String COLAN = ":";
+	public static final String BLANK = "";
+	public static final String ASTERIX = "*";
 	
 	public static final String ADDRESSES = "addresses";
 	public static final String START = "start";
 	public static final String END = "end";
 	public static final String CHAIN_INFO = "chaininfo";
-	public static final String BLANK = "";
 	public static final String MODE = "mode";
 	public static final String CAPABILITIES = "capabilities";
 	public static final String TXID = "txid";
@@ -24,5 +25,5 @@ public class StringConstants {
 	public static final String LOGICAL_TIMES = "logicalTimes";
 	public static final String AMOUNT = "amount";
 	public static final String ADDRESS = "address";
-	public static final String ASTERIX = "*";
+	public static final String RESULT = "result";
 }

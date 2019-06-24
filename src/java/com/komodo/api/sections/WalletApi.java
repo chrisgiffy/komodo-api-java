@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.TransactionOutputModel;
+import com.komodo.api.models.WalletInfoOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class WalletApi {
@@ -150,11 +153,13 @@ public class WalletApi {
 		return outputModel;
 	}
 
-	public OutputModel getTransaction(Configurations config, String txId, boolean includeWatchOnly) {
+	public TransactionOutputModel getTransaction(Configurations config, String txId, boolean includeWatchOnly) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TRANSACTION, 
 				StringConstants.DOUBLE_QUOTE+txId+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+includeWatchOnly);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
-		return outputModel;
+		Gson gson = new Gson();
+		JsonObject jsonObject = gson.fromJson(output, JsonObject.class);
+		TransactionOutputModel txModel = new Gson().fromJson(((JsonObject)jsonObject.get(StringConstants.RESULT)), TransactionOutputModel.class);
+		return txModel;
 	}
 
 	public OutputModel getUnconfirmedBalance(Configurations config) {
@@ -163,9 +168,9 @@ public class WalletApi {
 		return outputModel;
 	}
 
-	public OutputModel getWalletInfo(Configurations config, String hash) {
+	public WalletInfoOutputModel getWalletInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_WALLET_INFO, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		WalletInfoOutputModel outputModel = new Gson().fromJson(output, WalletInfoOutputModel.class);
 		return outputModel;
 	}
 
@@ -709,7 +714,7 @@ public class WalletApi {
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
-	
+
 	public OutputModel zSendMany(Configurations config, String fromAddress, Map<String, Double> addressAmountMap) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(fromAddress);
@@ -742,7 +747,7 @@ public class WalletApi {
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
-	
+
 	public OutputModel zShieldCoinBase(Configurations config, String fromAddress, String toAddress, double fee, int limit) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(fromAddress);
@@ -759,7 +764,7 @@ public class WalletApi {
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
-	
+
 	public OutputModel zcBenchmark(Configurations config, String benchmarkType) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(benchmarkType);
@@ -768,7 +773,7 @@ public class WalletApi {
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
-	
+
 	public OutputModel zcBenchmark(Configurations config, String benchmarkType, int sampleCount) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(benchmarkType);

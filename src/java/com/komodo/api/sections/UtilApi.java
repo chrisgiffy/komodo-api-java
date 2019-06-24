@@ -6,12 +6,16 @@ import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.CreateMultiSigOutputModel;
+import com.komodo.api.models.DecodeCCOpretOutputModel;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.ValidateAddressOutputModel;
+import com.komodo.api.models.ZValidateAddressOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class UtilApi {
 
-	public OutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys) {
+	public CreateMultiSigOutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys) {
 		StringBuilder params = new StringBuilder(numberRequired);
 		params.append(StringConstants.COMMA);
 		params.append(StringConstants.OPEN_BRACKET);
@@ -25,11 +29,11 @@ public class UtilApi {
 		}
 		params.append(StringConstants.CLOSE_BRACKET);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.CREATE_MULTI_SIG, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		CreateMultiSigOutputModel outputModel = new Gson().fromJson(output, CreateMultiSigOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys, String key) {
+	public CreateMultiSigOutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys, String key) {
 		StringBuilder params = new StringBuilder(numberRequired);
 		params.append(StringConstants.COMMA);
 		params.append(StringConstants.OPEN_BRACKET);
@@ -47,13 +51,13 @@ public class UtilApi {
 		params.append(key);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.CREATE_MULTI_SIG, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		CreateMultiSigOutputModel outputModel = new Gson().fromJson(output, CreateMultiSigOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel decodeCcOpert(Configurations config, String scriptPubKey) {
+	public DecodeCCOpretOutputModel decodeCcOpert(Configurations config, String scriptPubKey) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DECODE_CC_OPERET, StringConstants.DOUBLE_QUOTE+scriptPubKey+StringConstants.DOUBLE_QUOTE);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		DecodeCCOpretOutputModel outputModel = new Gson().fromJson(output, DecodeCCOpretOutputModel.class);
 		return outputModel;
 	}
 
@@ -87,9 +91,9 @@ public class UtilApi {
 		return outputModel;
 	}
 
-	public OutputModel validateAddress(Configurations config, String address) {
+	public ValidateAddressOutputModel validateAddress(Configurations config, String address) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VALIDATE_ADDRESS, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		ValidateAddressOutputModel outputModel = new Gson().fromJson(output, ValidateAddressOutputModel.class);
 		return outputModel;
 	}
 
@@ -110,9 +114,9 @@ public class UtilApi {
 		return outputModel;
 	}
 
-	public OutputModel zValidateAddress(Configurations config, String zAddress) {
+	public ZValidateAddressOutputModel zValidateAddress(Configurations config, String zAddress) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_VALIDATE_ADDRESS, StringConstants.DOUBLE_QUOTE+zAddress+StringConstants.DOUBLE_QUOTE);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		ZValidateAddressOutputModel outputModel = new Gson().fromJson(output, ZValidateAddressOutputModel.class);
 		return outputModel;
 	}
 	
