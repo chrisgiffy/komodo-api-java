@@ -2,17 +2,20 @@ package com.komodo.api.sections;
 
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
+import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class NetworkApi {
 	public OutputModel addNode(Configurations config, String node, String command) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(node);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(command);
-		params.append("\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ADD_NODE, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
@@ -25,23 +28,24 @@ public class NetworkApi {
 	}
 	
 	public OutputModel disconnectNode(Configurations config, String node) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DISCONNECT_NODE, "\""+node+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DISCONNECT_NODE, StringConstants.DOUBLE_QUOTE+node+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getAddedNodeInfo(Configurations config, boolean dns) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ADDED_NODE_INFO, ""+dns);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ADDED_NODE_INFO, StringConstants.BLANK+dns);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getAddedNodeInfo(Configurations config, boolean dns, String node) {
-		StringBuilder params = new StringBuilder("");
+		StringBuilder params = new StringBuilder();
 		params.append(dns);
-		params.append(",\"");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(node);
-		params.append("\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ADDED_NODE_INFO, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
@@ -90,21 +94,26 @@ public class NetworkApi {
 	}
 	
 	public OutputModel setBan(Configurations config, String ip, String command) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(ip);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(command);
-		params.append("\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	public OutputModel setBan(Configurations config, String ip, String command, int banTime) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(ip);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(command);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(banTime);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -112,13 +121,16 @@ public class NetworkApi {
 	}
 	
 	public OutputModel setBan(Configurations config, String ip, String command, int banTime, boolean absolute) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(ip);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(command);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(banTime);
-		params.append(",");
+		params.append(StringConstants.COMMA);
 		params.append(absolute);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);

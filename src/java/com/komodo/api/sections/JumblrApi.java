@@ -2,6 +2,7 @@ package com.komodo.api.sections;
 
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
+import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
@@ -9,7 +10,7 @@ import com.komodo.api.utils.KomodoUtil;
 public class JumblrApi {
 	
 	public OutputModel jumblrDeposit(Configurations config, String depositAddress) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, "\""+depositAddress+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, StringConstants.DOUBLE_QUOTE+depositAddress+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
@@ -27,7 +28,7 @@ public class JumblrApi {
 	}
 	
 	public OutputModel jumblrSecret(Configurations config, String secretAddress) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, "\""+secretAddress+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, StringConstants.DOUBLE_QUOTE+secretAddress+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

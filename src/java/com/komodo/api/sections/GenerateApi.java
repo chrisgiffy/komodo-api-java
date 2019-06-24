@@ -2,6 +2,7 @@ package com.komodo.api.sections;
 
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
+import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
@@ -9,7 +10,7 @@ import com.komodo.api.utils.KomodoUtil;
 public class GenerateApi {
 
 	public OutputModel generate(Configurations config, int numBlocks) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GENERATE, ""+numBlocks);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GENERATE, StringConstants.BLANK+numBlocks);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
@@ -19,13 +20,13 @@ public class GenerateApi {
 		return outputModel;
 	}
 	public OutputModel setGenerate(Configurations config, boolean generate) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, ""+generate);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, StringConstants.BLANK+generate);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel setGenerate(Configurations config, boolean generate, int genProcLimit) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, generate+","+genProcLimit);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_GENERATE, generate+StringConstants.COMMA+genProcLimit);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

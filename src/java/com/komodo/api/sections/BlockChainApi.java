@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
+import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
@@ -11,7 +12,7 @@ import com.komodo.api.utils.KomodoUtil;
 public class BlockChainApi {
 
 	public OutputModel coinSupply(Configurations config, int height) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.COINSUPPLY, "\""+height+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.COINSUPPLY, StringConstants.DOUBLE_QUOTE+height+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
@@ -29,9 +30,10 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getBlock(Configurations config, int height, boolean verbose) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(height);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(verbose);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -39,9 +41,10 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getBlock(Configurations config, String hash, boolean verbose) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(hash);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(verbose);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -61,29 +64,39 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getBlockHash(Configurations config, int index) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BEST_BLOCK_HASH, ""+index);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BEST_BLOCK_HASH, StringConstants.BLANK+index);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getBlockHashes(Configurations config, int high, int low, boolean noOrphans, boolean logicalTimes) {
 		StringBuilder params = new StringBuilder(high);
-		params.append(",");
+		params.append(StringConstants.COMMA);
 		params.append(low);
-		params.append(",{\"noOrphans\":");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.OPEN_BRACE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.NO_ORPHANS);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
 		params.append(noOrphans);
-		params.append(",\"logicalTimes\":");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.LOGICAL_TIMES);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
 		params.append(logicalTimes);
-		params.append("}");
+		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_HASHES, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getBlockHeader(Configurations config, String hash, boolean verbose) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(hash);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(verbose);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_HEADER, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -103,17 +116,19 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getChainTxStats(Configurations config, int nBlocks) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_CHAIN_TX_STATS, ""+nBlocks);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_CHAIN_TX_STATS, StringConstants.BLANK+nBlocks);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getChainTxStats(Configurations config, int nBlocks, String blockHash) {
-		StringBuilder params = new StringBuilder("{");
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
 		params.append(nBlocks);
-		params.append(",\"");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(blockHash);
-		params.append("\"}");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_CHAIN_TX_STATS, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
@@ -126,7 +141,7 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getLastSegIdStakes(Configurations config, int depth) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_LAST_SEG_ID_STAKES, ""+depth);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_LAST_SEG_ID_STAKES, StringConstants.BLANK+depth);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
@@ -138,26 +153,37 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getRawMemPool(Configurations config, boolean verbose) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_RAW_MEM_POOL, ""+verbose);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_RAW_MEM_POOL, StringConstants.BLANK+verbose);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getSpentInfo(Configurations config, String txId, int index) {
-		StringBuilder params = new StringBuilder("{\"txid\": \"");
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.TXID);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(txId);
-		params.append("\", \"index\": ");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.INDEX);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
 		params.append(index);
-		params.append("}");
+		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_SPENT_INFO, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getTxOut(Configurations config, String txId, int vout) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(txId);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(vout);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TX_OUT, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -165,11 +191,12 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getTxOut(Configurations config, String txId, int vout, boolean includeMemPool) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(txId);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(vout);
-		params.append(",");
+		params.append(StringConstants.COMMA);
 		params.append(includeMemPool);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TX_OUT, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -177,20 +204,26 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getTxOutProof(Configurations config, String txId) {
-		StringBuilder params = new StringBuilder("[\"");
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACKET);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(txId);
-		params.append("\"]");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CLOSE_BRACKET);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TX_OUT_PROOF, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel getTxOutProof(Configurations config, String txId, String blockHash) {
-		StringBuilder params = new StringBuilder("[\"");
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACKET);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(txId);
-		params.append("\"],\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CLOSE_BRACKET);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(blockHash);
-		params.append("\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TX_OUT_PROOF, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
@@ -203,17 +236,20 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel kvSearch(Configurations config, String key) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KV_SEARCH, "\""+key+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KV_SEARCH, StringConstants.DOUBLE_QUOTE+key+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel kvUpdate(Configurations config, String key, String value, int days) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(key);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(value);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(days);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KV_UPDATE, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -221,29 +257,33 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel kvUpdate(Configurations config, String key, String value, int days, String passPhrase) {
-		StringBuilder params = new StringBuilder("\"");
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(key);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(value);
-		params.append("\",");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
 		params.append(days);
-		params.append(",\"");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(passPhrase);
-		params.append("\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KV_UPDATE, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel minerIds(Configurations config, int heights) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.MINER_IDS, ""+heights);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.MINER_IDS, StringConstants.BLANK+heights);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
 	public OutputModel notaries(Configurations config, int height, Date timeStamp ) {
 		StringBuilder params = new StringBuilder(height);
-		params.append(",");
+		params.append(StringConstants.COMMA);
 		params.append(timeStamp.getTime());
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.NOTARIES, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
@@ -251,7 +291,7 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel notaries(Configurations config, int height) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.NOTARIES, ""+height);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.NOTARIES, StringConstants.BLANK+height);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
@@ -263,7 +303,7 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel verifyTxOutProof(Configurations config, String proofString) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VERIFY_TXOUT_PROOF, "\""+proofString+"\"");
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VERIFY_TXOUT_PROOF, StringConstants.DOUBLE_QUOTE+proofString+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
