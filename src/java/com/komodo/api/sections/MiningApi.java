@@ -2,104 +2,145 @@ package com.komodo.api.sections;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class MiningApi {
-	public String getBlockSubsidy(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_SUBSIDY, null);
-		return output;
+	public OutputModel getBlockSubsidy(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_SUBSIDY, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getBlockSubsidy(Configurations config, int height) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_SUBSIDY, ""+height);
-		return output;
+
+	public OutputModel getBlockSubsidy(Configurations config, int height) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_SUBSIDY, StringConstants.BLANK+height);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getBlockTemplate(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_TEMPLATE, null);
-		return output;
+
+	public OutputModel getBlockTemplate(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getBlockTemplate(Configurations config, String mode) {
-		StringBuilder params = new StringBuilder("{\"mode\":\"");
+
+	public OutputModel getBlockTemplate(Configurations config, String mode) {
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.MODE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(mode);
-		params.append("\"}");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_TEMPLATE, params.toString());
-		return output;
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CLOSE_BRACE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getBlockTemplate(Configurations config, List<String> capabilities) {
-		StringBuilder params = new StringBuilder("{\"capabilities\":[");
+
+	public OutputModel getBlockTemplate(Configurations config, List<String> capabilities) {
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CAPABILITIES);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
+		params.append(StringConstants.OPEN_BRACKET);
 		for(int i = 0; i < capabilities.size(); i++) {
 			if(i < 0) {
-				params.append(",");
+				params.append(StringConstants.COMMA);
 			}
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 			params.append(capabilities.get(i));
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 		}
-		params.append("]}");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_TEMPLATE, params.toString());
-		return output;
+		params.append(StringConstants.CLOSE_BRACKET);
+		params.append(StringConstants.CLOSE_BRACE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getBlockTemplate(Configurations config, String mode, List<String> capabilities) {
-		StringBuilder params = new StringBuilder("{\"mode\":\"");
+
+	public OutputModel getBlockTemplate(Configurations config, String mode, List<String> capabilities) {
+		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.MODE);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(mode);
-		params.append("\",");
-		params.append("\"capabilities\":[");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.CAPABILITIES);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COLAN);
+		params.append(StringConstants.OPEN_BRACKET);
 		for(int i = 0; i < capabilities.size(); i++) {
 			if(i < 0) {
-				params.append(",");
+				params.append(StringConstants.COMMA);
 			}
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 			params.append(capabilities.get(i));
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 		}
-		params.append("]}");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_BLOCK_TEMPLATE, params.toString());
-		return output;
+		params.append(StringConstants.CLOSE_BRACKET);
+		params.append(StringConstants.CLOSE_BRACE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getLocalSolps(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_LOCAL_SOLPS, null);
-		return output;
+
+	public OutputModel getLocalSolps(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_LOCAL_SOLPS, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getMiningInfo(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_MINING_INFO, null);
-		return output;
+
+	public OutputModel getMiningInfo(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_MINING_INFO, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getNetworkHashPs(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_NETWORK_HASH_PS, null);
-		return output;
+
+	public OutputModel getNetworkHashPs(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_HASH_PS, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getNetworkHashPs(Configurations config, int blocks, int height) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_NETWORK_HASH_PS, blocks+","+height);
-		return output;
+
+	public OutputModel getNetworkHashPs(Configurations config, int blocks, int height) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_HASH_PS, blocks+StringConstants.COMMA+height);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getNetworkSolps(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_NETWORK_SOLPS, null);
-		return output;
+
+	public OutputModel getNetworkSolps(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_SOLPS, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String getNetworkSolps(Configurations config, int blocks, int height) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_NETWORK_SOLPS, blocks+","+height);
-		return output;
+
+	public OutputModel getNetworkSolps(Configurations config, int blocks, int height) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_SOLPS, blocks+StringConstants.COMMA+height);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String prioritiseTransaction(Configurations config, String txId, double priorityDelta, double feeDelta) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.PRIORITISE_TRANSACTION, "\""+txId+"\","+priorityDelta+","+feeDelta);
-		return output;
+
+	public OutputModel prioritiseTransaction(Configurations config, String txId, double priorityDelta, double feeDelta) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.PRIORITISE_TRANSACTION, StringConstants.DOUBLE_QUOTE+txId+
+				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+priorityDelta+StringConstants.COMMA+feeDelta);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
-	
-	public String submitBlock(Configurations config, String hexData ) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.SUBMIT_BLOCK, "\""+hexData+"\"");
-		return output;
+
+	public OutputModel submitBlock(Configurations config, String hexData ) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SUBMIT_BLOCK, StringConstants.DOUBLE_QUOTE+hexData+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 }

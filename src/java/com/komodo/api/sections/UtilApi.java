@@ -2,97 +2,122 @@ package com.komodo.api.sections;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.CreateMultiSigOutputModel;
+import com.komodo.api.models.DecodeCCOpretOutputModel;
+import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.ValidateAddressOutputModel;
+import com.komodo.api.models.ZValidateAddressOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class UtilApi {
 
-	public String createMultiSig(Configurations config, int numberRequired, List<String> keys) {
+	public CreateMultiSigOutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys) {
 		StringBuilder params = new StringBuilder(numberRequired);
-		params.append(",[");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.OPEN_BRACKET);
 		for(int i = 0; i < keys.size(); i++) {
 			if(i > 0) {
-				params.append(",");
+				params.append(StringConstants.COMMA);
 			}
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 			params.append(keys.get(i));
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 		}
-		params.append("]");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.CREATE_MULTI_SIG, params.toString());
-		return output;
+		params.append(StringConstants.CLOSE_BRACKET);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.CREATE_MULTI_SIG, params.toString());
+		CreateMultiSigOutputModel outputModel = new Gson().fromJson(output, CreateMultiSigOutputModel.class);
+		return outputModel;
 	}
 	
-	public String createMultiSig(Configurations config, int numberRequired, List<String> keys, String key) {
+	public CreateMultiSigOutputModel createMultiSig(Configurations config, int numberRequired, List<String> keys, String key) {
 		StringBuilder params = new StringBuilder(numberRequired);
-		params.append(",[");
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.OPEN_BRACKET);
 		for(int i = 0; i < keys.size(); i++) {
 			if(i > 0) {
-				params.append(",");
+				params.append(StringConstants.COMMA);
 			}
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 			params.append(keys.get(i));
-			params.append("\"");
+			params.append(StringConstants.DOUBLE_QUOTE);
 		}
-		params.append("]");
-		params.append(",\"");
+		params.append(StringConstants.CLOSE_BRACKET);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(key);
-		params.append("\"");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.CREATE_MULTI_SIG, params.toString());
-		return output;
+		params.append(StringConstants.DOUBLE_QUOTE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.CREATE_MULTI_SIG, params.toString());
+		CreateMultiSigOutputModel outputModel = new Gson().fromJson(output, CreateMultiSigOutputModel.class);
+		return outputModel;
 	}
 
-	public String decodeCcOpert(Configurations config, String scriptPubKey) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.DECODE_CC_OPERET, "\""+scriptPubKey+"\"");
-		return output;
+	public DecodeCCOpretOutputModel decodeCcOpert(Configurations config, String scriptPubKey) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DECODE_CC_OPERET, StringConstants.DOUBLE_QUOTE+scriptPubKey+StringConstants.DOUBLE_QUOTE);
+		DecodeCCOpretOutputModel outputModel = new Gson().fromJson(output, DecodeCCOpretOutputModel.class);
+		return outputModel;
 	}
 
-	public String estimateFee(Configurations config, int nBlocks) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.ESTIMATE_FEE, ""+nBlocks);
-		return output;
+	public OutputModel estimateFee(Configurations config, int nBlocks) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ESTIMATE_FEE, StringConstants.BLANK+nBlocks);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String estimatePriority(Configurations config, int nBlocks) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.ESTIMATE_PRIORITY, ""+nBlocks);
-		return output;
+	public OutputModel estimatePriority(Configurations config, int nBlocks) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ESTIMATE_PRIORITY, StringConstants.BLANK+nBlocks);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String invalidateBlock(Configurations config, String hash) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.INVALIDATE_BLOCK, "\""+hash+"\"");
-		return output;
+	public OutputModel invalidateBlock(Configurations config, String hash) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.INVALIDATE_BLOCK, StringConstants.DOUBLE_QUOTE+hash+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String reconsiderBlock(Configurations config, String hash) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.RECONSIDER_BLOCK, "\""+hash+"\"");
-		return output;
+	public OutputModel reconsiderBlock(Configurations config, String hash) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.RECONSIDER_BLOCK, StringConstants.DOUBLE_QUOTE+hash+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String txNotarizedConfirmed(Configurations config, String txId) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.TX_NOTORIZED_CONFIRMED, "\""+txId+"\"");
-		return output;
+	public OutputModel txNotarizedConfirmed(Configurations config, String txId) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.TX_NOTORIZED_CONFIRMED, StringConstants.DOUBLE_QUOTE+txId+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String validateAddress(Configurations config, String address) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.VALIDATE_ADDRESS, "\""+address+"\"");
-		return output;
+	public ValidateAddressOutputModel validateAddress(Configurations config, String address) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VALIDATE_ADDRESS, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE);
+		ValidateAddressOutputModel outputModel = new Gson().fromJson(output, ValidateAddressOutputModel.class);
+		return outputModel;
 	}
 
-	public String verifyMessage(Configurations config, String address, String signature, String message) {
-		StringBuilder params = new StringBuilder("\"");
+	public OutputModel verifyMessage(Configurations config, String address, String signature, String message) {
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(address);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(signature);
-		params.append("\",\"");
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(message);
-		params.append("\"");
-		String output = KomodoUtil.fireKomodo(config, StringConstants.VERIFY_MESSAGE, params.toString());
-		return output;
+		params.append(StringConstants.DOUBLE_QUOTE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VERIFY_MESSAGE, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String zValidateAddress(Configurations config, String zAddress) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.Z_VALIDATE_ADDRESS, "\""+zAddress+"\"");
-		return output;
+	public ZValidateAddressOutputModel zValidateAddress(Configurations config, String zAddress) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_VALIDATE_ADDRESS, StringConstants.DOUBLE_QUOTE+zAddress+StringConstants.DOUBLE_QUOTE);
+		ZValidateAddressOutputModel outputModel = new Gson().fromJson(output, ZValidateAddressOutputModel.class);
+		return outputModel;
 	}
 	
 }

@@ -37,7 +37,7 @@ public class KomodoUtil {
 			os.flush();
 
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-				return "Failed : Please enter proper parameters";
+				return "error : "+conn.getResponseCode();
 			}
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
@@ -45,10 +45,9 @@ public class KomodoUtil {
 
 
 			String temp;
-			System.out.println("Output from Server .... \n");
 			while ((temp = br.readLine()) != null) {
 				output.append(temp);
-				System.out.println(temp);
+				//System.out.println(temp);
 			}
 
 			conn.disconnect();

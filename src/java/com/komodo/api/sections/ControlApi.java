@@ -1,28 +1,65 @@
 package com.komodo.api.sections;
 
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.GetInfoModel;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software.
+ * @author Giffy Chris
+ *
+ */
 public class ControlApi {
 
-	public String getInfo(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.GET_INFO, null);
-		return output;
+	/**
+	 * The getinfo method returns an object containing various state info
+	 * @param config
+	 * @return GetInfoModel
+	 */
+	public GetInfoModel getInfo(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_INFO, null);
+		GetInfoModel getInfo = new Gson().fromJson(output, GetInfoModel.class);
+		return getInfo;
 	}
 	
-	public String help(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.HELP, null);
-		return output;
+	/**
+	 * The help method lists all commands, or all information for a specified command.
+	 * @param config
+	 * @return
+	 */
+	public OutputModel help(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
-	public String help(Configurations config, String command) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.HELP, "\""+command+"\"");
-		return output;
+	/**
+	 * The help method lists all commands, or all information for a specified command.
+	 * @param config
+	 * @param command
+	 * @return
+	 */
+	public OutputModel help(Configurations config, String command) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, StringConstants.DOUBLE_QUOTE+command+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String stop(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.STOP, null);
-		return output;
+	/**
+	 * The stop method instructs the coin daemon to shut down.
+	 * The amount of time it takes to shut down the chain will vary depending on the chain's current state.
+	 * Forcefully stopping the chain should be avoided, as it may cause a corruption in the local database. 
+	 * In the event of a corrupted database, the user will need to resync.
+	 * @param config
+	 * @return
+	 */
+	public OutputModel stop(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.STOP, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 }

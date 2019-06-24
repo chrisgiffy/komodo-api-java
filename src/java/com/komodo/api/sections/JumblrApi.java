@@ -1,29 +1,36 @@
 package com.komodo.api.sections;
 
+import com.google.gson.Gson;
+import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
+import com.komodo.api.models.OutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class JumblrApi {
 	
-	public String jumblrDeposit(Configurations config, String depositAddress) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.JUMBLR_DEPOSIT, "\""+depositAddress+"\"");
-		return output;
+	public OutputModel jumblrDeposit(Configurations config, String depositAddress) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, StringConstants.DOUBLE_QUOTE+depositAddress+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String jumblrPause(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.JUMBLR_PAUSE, null);
-		return output;
+	public OutputModel jumblrPause(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_PAUSE, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String jumblrResume(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.JUMBLR_RESUME, null);
-		return output;
+	public OutputModel jumblrResume(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_RESUME, null);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 	
-	public String jumblrSecret(Configurations config, String secretAddress) {
-		String output = KomodoUtil.fireKomodo(config, StringConstants.JUMBLR_DEPOSIT, "\""+secretAddress+"\"");
-		return output;
+	public OutputModel jumblrSecret(Configurations config, String secretAddress) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.JUMBLR_DEPOSIT, StringConstants.DOUBLE_QUOTE+secretAddress+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
 	}
 
 }
