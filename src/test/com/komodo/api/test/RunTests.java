@@ -8,7 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({  
         GenerateTest.class, 
         WalletTest.class,
-        ControlTest.class})
+        ControlTest.class,
+        UtilTest.class})
 public class RunTests {
 
 }
