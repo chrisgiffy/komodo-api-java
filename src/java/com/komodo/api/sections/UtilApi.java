@@ -5,13 +5,13 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
-import com.komodo.api.models.BooleanOutputModel;
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.CreateMultiSigOutputModel;
-import com.komodo.api.models.DecodeCCOpretOutputModel;
 import com.komodo.api.models.OutputModel;
-import com.komodo.api.models.ValidateAddressOutputModel;
-import com.komodo.api.models.ZValidateAddressOutputModel;
+import com.komodo.api.models.util.BooleanOutputModel;
+import com.komodo.api.models.util.CreateMultiSigOutputModel;
+import com.komodo.api.models.util.DecodeCCOpretOutputModel;
+import com.komodo.api.models.util.ValidateAddressOutputModel;
+import com.komodo.api.models.util.ZValidateAddressOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class UtilApi {

@@ -5,9 +5,25 @@ import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.network.AddedNodeInfoOutputModel;
+import com.komodo.api.models.network.DeprecationInfoOutputModel;
+import com.komodo.api.models.network.ListBannedOutputModel;
+import com.komodo.api.models.network.NetTotalsOutputModel;
+import com.komodo.api.models.network.NetworInfoOutputModel;
+import com.komodo.api.models.network.PeerInfoOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class NetworkApi {
+	
+	/**
+	 * addnode "node" "add|remove|onetry"
+	 * The addnode method attempts to add or remove a node from the addnode list, 
+	 * or to make a single attempt to connect to a node
+	 * @param config
+	 * @param node
+	 * @param command
+	 * @return
+	 */
 	public OutputModel addNode(Configurations config, String node, String command) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(node);
@@ -33,13 +49,13 @@ public class NetworkApi {
 		return outputModel;
 	}
 	
-	public OutputModel getAddedNodeInfo(Configurations config, boolean dns) {
+	public AddedNodeInfoOutputModel getAddedNodeInfo(Configurations config, boolean dns) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ADDED_NODE_INFO, StringConstants.BLANK+dns);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		AddedNodeInfoOutputModel outputModel = new Gson().fromJson(output, AddedNodeInfoOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel getAddedNodeInfo(Configurations config, boolean dns, String node) {
+	public AddedNodeInfoOutputModel getAddedNodeInfo(Configurations config, boolean dns, String node) {
 		StringBuilder params = new StringBuilder();
 		params.append(dns);
 		params.append(StringConstants.COMMA);
@@ -47,7 +63,7 @@ public class NetworkApi {
 		params.append(node);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ADDED_NODE_INFO, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		AddedNodeInfoOutputModel outputModel = new Gson().fromJson(output, AddedNodeInfoOutputModel.class);
 		return outputModel;
 	}
 	
@@ -57,33 +73,33 @@ public class NetworkApi {
 		return outputModel;
 	}
 	
-	public OutputModel getDeprecationInfo(Configurations config) {
+	public DeprecationInfoOutputModel getDeprecationInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_DEPRECATION_INFO, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		DeprecationInfoOutputModel outputModel = new Gson().fromJson(output, DeprecationInfoOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel getNetTotals(Configurations config) {
+	public NetTotalsOutputModel getNetTotals(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NET_TOTALS, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		NetTotalsOutputModel outputModel = new Gson().fromJson(output, NetTotalsOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel getNetworkInfo(Configurations config) {
+	public NetworInfoOutputModel getNetworkInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_INFO, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		NetworInfoOutputModel outputModel = new Gson().fromJson(output, NetworInfoOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel getPeerInfo(Configurations config) {
+	public PeerInfoOutputModel getPeerInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_PEER_INFO, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		PeerInfoOutputModel outputModel = new Gson().fromJson(output, PeerInfoOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel listBanned(Configurations config) {
+	public ListBannedOutputModel listBanned(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_BANNED, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		ListBannedOutputModel outputModel = new Gson().fromJson(output, ListBannedOutputModel.class);
 		return outputModel;
 	}
 	
@@ -105,6 +121,7 @@ public class NetworkApi {
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
+	
 	public OutputModel setBan(Configurations config, String ip, String command, int banTime) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(ip);
@@ -116,23 +133,7 @@ public class NetworkApi {
 		params.append(StringConstants.COMMA);
 		params.append(banTime);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
-		return outputModel;
-	}
-	
-	public OutputModel setBan(Configurations config, String ip, String command, int banTime, boolean absolute) {
-		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
-		params.append(ip);
-		params.append(StringConstants.DOUBLE_QUOTE);
-		params.append(StringConstants.COMMA);
-		params.append(StringConstants.DOUBLE_QUOTE);
-		params.append(command);
-		params.append(StringConstants.DOUBLE_QUOTE);
-		params.append(StringConstants.COMMA);
-		params.append(banTime);
-		params.append(StringConstants.COMMA);
-		params.append(absolute);
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
+		System.out.println(output);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

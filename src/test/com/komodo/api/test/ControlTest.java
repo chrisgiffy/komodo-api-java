@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.GetInfoModel;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.control.GetInfoModel;
 import com.komodo.api.sections.ControlApi;
 
 public class ControlTest {

@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.GetGenerateOutputModel;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.generate.GetGenerateOutputModel;
 import com.komodo.api.sections.GenerateApi;
 
 public class GenerateTest {

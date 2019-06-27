@@ -5,8 +5,8 @@ import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.ListResultOutModel;
-import com.komodo.api.models.GetGenerateOutputModel;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.generate.GetGenerateOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class GenerateApi {

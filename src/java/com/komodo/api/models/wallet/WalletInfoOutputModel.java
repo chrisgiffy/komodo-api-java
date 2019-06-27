@@ -1,4 +1,4 @@
-package com.komodo.api.models;
+package com.komodo.api.models.wallet;
 
 public class WalletInfoOutputModel {
 	

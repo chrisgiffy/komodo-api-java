@@ -1,4 +1,4 @@
-package com.komodo.api.models;
+package com.komodo.api.models.address;
 
 import java.util.List;
 
@@ -97,6 +97,31 @@ public class SnapshotOutputModel {
 			this.endTime = endTime;
 		}
 		
+	}
+	
+	public static class Address {
+		private String addr;
+		private String amount;
+		private int segId;
+		public String getAddr() {
+			return addr;
+		}
+		public void setAddr(String addr) {
+			this.addr = addr;
+		}
+		public String getAmount() {
+			return amount;
+		}
+		public void setAmount(String amount) {
+			this.amount = amount;
+		}
+		public int getSegId() {
+			return segId;
+		}
+		public void setSegId(int segId) {
+			this.segId = segId;
+		}
+
 	}
 
 }

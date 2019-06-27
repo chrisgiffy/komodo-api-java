@@ -9,7 +9,12 @@ import org.junit.runners.Suite.SuiteClasses;
         GenerateTest.class, 
         WalletTest.class,
         ControlTest.class,
-        UtilTest.class})
+        UtilTest.class,
+        JumblrTest.class,
+        NetworkTest.class,
+        MiningTest.class,
+        RawTransactionTest.class,
+        BlockChainTest.class})
 public class RunTests {
 
 }

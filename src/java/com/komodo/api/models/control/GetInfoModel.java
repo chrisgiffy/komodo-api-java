@@ -1,4 +1,4 @@
-package com.komodo.api.models;
+package com.komodo.api.models.control;
 
 public class GetInfoModel {
 	private String error;

@@ -1,12 +1,14 @@
-package com.komodo.api.models;
+package com.komodo.api.models.address;
 
 import java.util.List;
 
-public class AddressUtxosOutModel {
+import com.komodo.api.models.Delta;
+
+public class ListDeltasOutputModel {
 	private String error;
 	private String id;
-	private List<Utxos> result;
-
+	private List<Delta> result;
+	
 	public String getError() {
 		return error;
 	}
@@ -23,11 +25,11 @@ public class AddressUtxosOutModel {
 		this.id = id;
 	}
 
-	public List<Utxos> getResult() {
+	public List<Delta> getResult() {
 		return result;
 	}
 
-	public void setResult(List<Utxos> result) {
+	public void setResult(List<Delta> result) {
 		this.result = result;
 	}
 }

@@ -1,6 +1,8 @@
-package com.komodo.api.models;
+package com.komodo.api.models.address;
 
 import java.util.List;
+
+import com.komodo.api.models.Delta;
 
 public class DeltasOutputWithStartEnd {
 	private String error;
@@ -53,5 +55,23 @@ public class DeltasOutputWithStartEnd {
 		public void setEnd(HashHeightModel end) {
 			this.end = end;
 		}
+	}
+	
+	public static class HashHeightModel {
+		private String hash;
+		private int height;
+		public int getHeight() {
+			return height;
+		}
+		public void setHeight(int height) {
+			this.height = height;
+		}
+		public String getHash() {
+			return hash;
+		}
+		public void setHash(String hash) {
+			this.hash = hash;
+		}
+
 	}
 }

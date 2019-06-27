@@ -1,6 +1,6 @@
-package com.komodo.api.models;
+package com.komodo.api.models.util;
 
-import com.komodo.api.models.WalletInfoOutputModel.Result;
+import com.komodo.api.models.wallet.WalletInfoOutputModel.Result;
 
 public class CreateMultiSigOutputModel {
 	private String error;

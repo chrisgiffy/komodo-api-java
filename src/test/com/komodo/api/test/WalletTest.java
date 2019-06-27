@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
-import com.komodo.api.models.TransactionOutputModel;
-import com.komodo.api.models.WalletInfoOutputModel;
+import com.komodo.api.models.wallet.TransactionOutputModel;
+import com.komodo.api.models.wallet.WalletInfoOutputModel;
 import com.komodo.api.sections.WalletApi;
 
 public class WalletTest {

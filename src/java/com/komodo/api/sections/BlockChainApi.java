@@ -7,19 +7,21 @@ import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.blockchain.BlockOutputModel;
+import com.komodo.api.models.blockchain.CoinSupplyOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class BlockChainApi {
 
-	public OutputModel coinSupply(Configurations config, int height) {
+	public CoinSupplyOutputModel coinSupply(Configurations config, int height) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.COINSUPPLY, StringConstants.DOUBLE_QUOTE+height+StringConstants.DOUBLE_QUOTE);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		CoinSupplyOutputModel outputModel = new Gson().fromJson(output, CoinSupplyOutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel coinSupply(Configurations config) {
+	public CoinSupplyOutputModel coinSupply(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.COINSUPPLY, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		CoinSupplyOutputModel outputModel = new Gson().fromJson(output, CoinSupplyOutputModel.class);
 		return outputModel;
 	}
 
@@ -29,23 +31,45 @@ public class BlockChainApi {
 		return outputModel;
 	}
 	
-	public OutputModel getBlock(Configurations config, int height, boolean verbose) {
+	public BlockOutputModel getBlockVerboseTrue(Configurations config, int height) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(height);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.COMMA);
-		params.append(verbose);
+		params.append(true);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
+		BlockOutputModel outputModel = new Gson().fromJson(output, BlockOutputModel.class);
+		return outputModel;
+	}
+	
+	public OutputModel getBlockVerboseFalse(Configurations config, int height) {
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
+		params.append(height);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(false);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 	
-	public OutputModel getBlock(Configurations config, String hash, boolean verbose) {
+	public BlockOutputModel getBlockVerboseTrue(Configurations config, String hash) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(hash);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.COMMA);
-		params.append(verbose);
+		params.append(true);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
+		BlockOutputModel outputModel = new Gson().fromJson(output, BlockOutputModel.class);
+		return outputModel;
+	}
+	
+	public OutputModel getBlockVerboseFalse(Configurations config, String hash) {
+		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
+		params.append(hash);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(StringConstants.COMMA);
+		params.append(false);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK, params.toString());
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
@@ -64,7 +88,8 @@ public class BlockChainApi {
 	}
 	
 	public OutputModel getBlockHash(Configurations config, int index) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BEST_BLOCK_HASH, StringConstants.BLANK+index);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_HASH, StringConstants.BLANK+index);
+		System.out.println(output);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

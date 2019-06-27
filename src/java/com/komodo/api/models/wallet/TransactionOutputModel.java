@@ -1,21 +1,75 @@
-package com.komodo.api.models;
+package com.komodo.api.models.wallet;
 
 import java.util.List;
 
 public class TransactionOutputModel {
 	private double amount;
-	  private double fee;
-	  private int rawconfirmations;
-	  private int confirmations;
-	  private String blockhash;
-	  private int blockindex;
-	  private long blocktime;
-	  private int expiryheight;
-	  private String txid;
-	  private long time;
-	  private long timereceived;
-	  private List<Details> details;
-	  private String hex;
+	private double fee;
+	private int rawconfirmations;
+	private int confirmations;
+	private String blockhash;
+	private int blockindex;
+	private long blocktime;
+	private int expiryheight;
+	private String txid;
+	private long time;
+	private long timereceived;
+	private List<Details> details;
+	private String hex;
+
+	public static class Details {
+		private String account;
+		private String address;
+		private String category;
+		private double amount;
+		private int vout;
+		private double fee;
+		private int size;
+		public String getAccount() {
+			return account;
+		}
+		public void setAccount(String account) {
+			this.account = account;
+		}
+		public String getAddress() {
+			return address;
+		}
+		public void setAddress(String address) {
+			this.address = address;
+		}
+		public String getCategory() {
+			return category;
+		}
+		public void setCategory(String category) {
+			this.category = category;
+		}
+		public double getAmount() {
+			return amount;
+		}
+		public void setAmount(double amount) {
+			this.amount = amount;
+		}
+		public int getVout() {
+			return vout;
+		}
+		public void setVout(int vout) {
+			this.vout = vout;
+		}
+		public double getFee() {
+			return fee;
+		}
+		public void setFee(double fee) {
+			this.fee = fee;
+		}
+		public int getSize() {
+			return size;
+		}
+		public void setSize(int size) {
+			this.size = size;
+		}
+
+	}
+
 	public double getAmount() {
 		return amount;
 	}
@@ -94,5 +148,5 @@ public class TransactionOutputModel {
 	public void setHex(String hex) {
 		this.hex = hex;
 	}
-	  
+
 }

@@ -1,6 +1,8 @@
-package com.komodo.api.models;
+package com.komodo.api.models.address;
 
 import java.util.List;
+
+import com.komodo.api.models.Utxos;
 
 public class AddressUtxosChainInfoOutModel {
 	private String error;
