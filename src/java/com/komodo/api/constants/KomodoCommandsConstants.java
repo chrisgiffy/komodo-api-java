@@ -50,7 +50,7 @@ public class KomodoCommandsConstants {
 	public static final String SET_GENERATE = "setgenerate";
 
 	//RAW_TRANSACTIONS BLOCK
-	public static final String DECODE_RAW_TRANSACTION = "decoderawtransction";
+	public static final String DECODE_RAW_TRANSACTION = "decoderawtransaction";
 	public static final String DECODE_SCRIPT = "decodescript";
 	public static final String FUND_RAW_TRANSACTION = "fundrawtransaction";
 	public static final String GET_RAW_TRANSACTION = "getrawtransaction";

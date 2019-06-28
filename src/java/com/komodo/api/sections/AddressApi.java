@@ -5,16 +5,16 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
-import com.komodo.api.models.ListDeltasOutputModel;
 import com.komodo.api.models.ListResultOutModel;
-import com.komodo.api.models.DeltasOutputWithStartEnd;
-import com.komodo.api.models.AddressMempoolOutModel;
-import com.komodo.api.models.AddressUtxosChainInfoOutModel;
-import com.komodo.api.models.AddressUtxosOutModel;
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.GetAddressBalanceOutputModel;
 import com.komodo.api.models.OutputModel;
-import com.komodo.api.models.SnapshotOutputModel;
+import com.komodo.api.models.address.AddressMempoolOutModel;
+import com.komodo.api.models.address.AddressUtxosChainInfoOutModel;
+import com.komodo.api.models.address.AddressUtxosOutModel;
+import com.komodo.api.models.address.DeltasOutputWithStartEnd;
+import com.komodo.api.models.address.GetAddressBalanceOutputModel;
+import com.komodo.api.models.address.ListDeltasOutputModel;
+import com.komodo.api.models.address.SnapshotOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class AddressApi {

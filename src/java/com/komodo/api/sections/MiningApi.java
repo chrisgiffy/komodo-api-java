@@ -7,28 +7,31 @@ import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
 import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.mining.BlockTemplateOutputModel;
+import com.komodo.api.models.mining.MiningInfoOutputModel;
+import com.komodo.api.models.mining.MiningSubsidyOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 public class MiningApi {
-	public OutputModel getBlockSubsidy(Configurations config) {
+	public MiningSubsidyOutputModel getBlockSubsidy(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_SUBSIDY, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		MiningSubsidyOutputModel outputModel = new Gson().fromJson(output, MiningSubsidyOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel getBlockSubsidy(Configurations config, int height) {
+	public MiningSubsidyOutputModel getBlockSubsidy(Configurations config, int height) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_SUBSIDY, StringConstants.BLANK+height);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		MiningSubsidyOutputModel outputModel = new Gson().fromJson(output, MiningSubsidyOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel getBlockTemplate(Configurations config) {
+	public BlockTemplateOutputModel getBlockTemplate(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		BlockTemplateOutputModel outputModel = new Gson().fromJson(output, BlockTemplateOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel getBlockTemplate(Configurations config, String mode) {
+	public BlockTemplateOutputModel getBlockTemplate(Configurations config, String mode) {
 		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.MODE);
@@ -39,11 +42,11 @@ public class MiningApi {
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		BlockTemplateOutputModel outputModel = new Gson().fromJson(output, BlockTemplateOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel getBlockTemplate(Configurations config, List<String> capabilities) {
+	public BlockTemplateOutputModel getBlockTemplate(Configurations config, List<String> capabilities) {
 		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.CAPABILITIES);
@@ -61,11 +64,11 @@ public class MiningApi {
 		params.append(StringConstants.CLOSE_BRACKET);
 		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		BlockTemplateOutputModel outputModel = new Gson().fromJson(output, BlockTemplateOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel getBlockTemplate(Configurations config, String mode, List<String> capabilities) {
+	public BlockTemplateOutputModel getBlockTemplate(Configurations config, String mode, List<String> capabilities) {
 		StringBuilder params = new StringBuilder(StringConstants.OPEN_BRACE);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.MODE);
@@ -91,7 +94,7 @@ public class MiningApi {
 		params.append(StringConstants.CLOSE_BRACKET);
 		params.append(StringConstants.CLOSE_BRACE);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BLOCK_TEMPLATE, params.toString());
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		BlockTemplateOutputModel outputModel = new Gson().fromJson(output, BlockTemplateOutputModel.class);
 		return outputModel;
 	}
 
@@ -101,21 +104,9 @@ public class MiningApi {
 		return outputModel;
 	}
 
-	public OutputModel getMiningInfo(Configurations config) {
+	public MiningInfoOutputModel getMiningInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_MINING_INFO, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
-		return outputModel;
-	}
-
-	public OutputModel getNetworkHashPs(Configurations config) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_HASH_PS, null);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
-		return outputModel;
-	}
-
-	public OutputModel getNetworkHashPs(Configurations config, int blocks, int height) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NETWORK_HASH_PS, blocks+StringConstants.COMMA+height);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		MiningInfoOutputModel outputModel = new Gson().fromJson(output, MiningInfoOutputModel.class);
 		return outputModel;
 	}
 
@@ -140,6 +131,7 @@ public class MiningApi {
 
 	public OutputModel submitBlock(Configurations config, String hexData ) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SUBMIT_BLOCK, StringConstants.DOUBLE_QUOTE+hexData+StringConstants.DOUBLE_QUOTE);
+		System.out.println(output);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

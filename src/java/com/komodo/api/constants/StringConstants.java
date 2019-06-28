@@ -4,6 +4,7 @@ public class StringConstants {
 	
 	public static final String COMMA = ",";
 	public static final String DOUBLE_QUOTE = "\"";
+	public static final String SINGLE_QUOTE = "'";
 	public static final String OPEN_BRACE = "{";
 	public static final String CLOSE_BRACE = "}";
 	public static final String OPEN_BRACKET = "[";
