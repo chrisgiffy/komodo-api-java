@@ -320,6 +320,20 @@ public class AddressApi {
 	public SnapshotOutputModel getSnapshot(Configurations config, int top) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_SNAPSHOT, StringConstants.DOUBLE_QUOTE+top+StringConstants.DOUBLE_QUOTE);
 		SnapshotOutputModel outputModel = new Gson().fromJson(output, SnapshotOutputModel.class);
+		
+		return outputModel;
+	}
+	
+	/**
+	 * The getsnapshot method returns a snapshot of addresses and their amounts at the asset chain's current height.
+	 * The method requires addressindex to be enabled
+	 * @param config
+	 * @return SnapshotOutputModel
+	 */
+	public SnapshotOutputModel getSnapshot(Configurations config) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_SNAPSHOT,  null);
+		SnapshotOutputModel outputModel = new Gson().fromJson(output, SnapshotOutputModel.class);
+		
 		return outputModel;
 	}
 }

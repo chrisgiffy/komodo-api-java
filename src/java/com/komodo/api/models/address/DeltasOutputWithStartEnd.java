@@ -2,6 +2,7 @@ package com.komodo.api.models.address;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
 import com.komodo.api.models.Delta;
 
 public class DeltasOutputWithStartEnd {
@@ -34,8 +35,11 @@ public class DeltasOutputWithStartEnd {
 	}
 	
 	public static class Result{
+		@SerializedName("deltas")
 		private List<Delta> deltas;
+		@SerializedName("start")
 		private HashHeightModel start;
+		@SerializedName("end")
 		private HashHeightModel end;
 		public List<Delta> getDeltas() {
 			return deltas;
@@ -58,8 +62,11 @@ public class DeltasOutputWithStartEnd {
 	}
 	
 	public static class HashHeightModel {
+		@SerializedName("hash")
 		private String hash;
+		@SerializedName("height")
 		private int height;
+		
 		public int getHeight() {
 			return height;
 		}

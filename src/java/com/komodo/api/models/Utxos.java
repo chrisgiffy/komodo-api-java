@@ -1,12 +1,21 @@
 package com.komodo.api.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Utxos {
+	@SerializedName("satoshis")
 	private double satoshis;
+	@SerializedName("txid")
 	private String txId;
+	@SerializedName("address")
 	private String address;
+	@SerializedName("outputIndex")
 	private int outputIndex;
+	@SerializedName("outputIndex")
 	private String script;
+	@SerializedName("height")
 	private int height;
+	
 	public double getSatoshis() {
 		return satoshis;
 	}

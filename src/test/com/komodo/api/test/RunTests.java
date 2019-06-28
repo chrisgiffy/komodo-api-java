@@ -14,7 +14,8 @@ import org.junit.runners.Suite.SuiteClasses;
         NetworkTest.class,
         MiningTest.class,
         RawTransactionTest.class,
-        BlockChainTest.class})
+        BlockChainTest.class,
+        AddressTest.class})
 public class RunTests {
 
 }

@@ -2,6 +2,7 @@ package com.komodo.api.models.address;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
 import com.komodo.api.models.Utxos;
 
 public class AddressUtxosChainInfoOutModel {
@@ -34,9 +35,13 @@ public class AddressUtxosChainInfoOutModel {
 	}
 
 	public static class Result{
+		@SerializedName("utxos")
 		private List<Utxos> utxos;
+		@SerializedName("hash")
 		private String hash;
+		@SerializedName("hash")
 		private int height;
+		
 		public List<Utxos> getUtxos() {
 			return utxos;
 		}
