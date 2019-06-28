@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.OutputModel;
 import com.komodo.api.models.StringResultOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
