@@ -2,6 +2,8 @@ package com.komodo.api.models.address;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SnapshotOutputModel {
 	private String error;
 	private String id;
@@ -32,16 +34,52 @@ public class SnapshotOutputModel {
 	}
 
 	public static class Result{
+		
+		@SerializedName("start_time")
 		private long startTime;
+		
+		@SerializedName("addresses")
 		private List<Address> addresses;
+		
+		@SerializedName("average")
+		private int average;
+		
+		@SerializedName("total")
 		private double total;
+		
+		@SerializedName("utxos")
 		private long utxos;
+		
+		@SerializedName("total_addresses")
 		private int totalAddresses;
+		
+		@SerializedName("ignored_addresses")
 		private int ignoredAddresses;
+		
+		@SerializedName("start_Height")
 		private int startHeight;
+		
+		@SerializedName("ending_height")
 		private int endingHeight;
+		
+		@SerializedName("end_time")
 		private long endTime;
 		
+		@SerializedName("error")
+		private String error;
+		
+		public int getAverage() {
+			return average;
+		}
+		public void setAverage(int average) {
+			this.average = average;
+		}
+		public String getError() {
+			return error;
+		}
+		public void setError(String error) {
+			this.error = error;
+		}
 		public long getStartTime() {
 			return startTime;
 		}
@@ -100,9 +138,13 @@ public class SnapshotOutputModel {
 	}
 	
 	public static class Address {
+		@SerializedName("addr")
 		private String addr;
+		@SerializedName("amount")
 		private String amount;
+		@SerializedName("segid")
 		private int segId;
+		
 		public String getAddr() {
 			return addr;
 		}

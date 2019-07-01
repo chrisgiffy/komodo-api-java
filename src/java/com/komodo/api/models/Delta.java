@@ -1,11 +1,19 @@
 package com.komodo.api.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Delta {
+	@SerializedName("satoshis")
 	private double satoshis;
+	@SerializedName("txid")
     private String txId;
+	@SerializedName("index")
     private int index;
+	@SerializedName("blockindex")
     private int blockIndex;
+	@SerializedName("height")
     private int height;
+	@SerializedName("address")
     private String address;
     
 	public double getSatoshis() {

@@ -2,6 +2,8 @@ package com.komodo.api.models.address;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class AddressMempoolOutModel {
 	private String error;
 	private String id;
@@ -32,13 +34,21 @@ public class AddressMempoolOutModel {
 	}
 
 	public static class Result{
+		@SerializedName("address")
 		private String address;
+		@SerializedName("txid")
 		private String txId;
+		@SerializedName("index")
 		private int index;
+		@SerializedName("satoshis")
 		private double satoshis;
+		@SerializedName("timestamp")
 		private long timeStamp;
+		@SerializedName("prevtxid")
 		private String prevTxId;
+		@SerializedName("prevout")
 		private int prevOut;
+		
 		public String getAddress() {
 			return address;
 		}
