@@ -2,6 +2,8 @@ package com.komodo.api.models.util;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class DecodeCCOpretOutputModel {
 	private String error;
 	private String id;
@@ -32,7 +34,9 @@ public class DecodeCCOpretOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("result")
 		private String result;
+		@SerializedName("OpRets")
 		private List<OpRets> opRets;
 		public String getResult() {
 			return result;
@@ -49,8 +53,9 @@ public class DecodeCCOpretOutputModel {
 	}
 
 	public static class OpRets {
-
+		@SerializedName("eval_code")
 		private String evalCode;
+		@SerializedName("function")
 		private String function;
 		public String getEvalCode() {
 			return evalCode;

@@ -1,5 +1,7 @@
 package com.komodo.api.models.rawtransactions;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SignRawTxOutputModel {
 	
 	private String error;
@@ -7,7 +9,9 @@ public class SignRawTxOutputModel {
 	private Result result;
 	
 	public static class Result{
+		@SerializedName("hex")
 		private String hex;
+		@SerializedName("complete")
 		private String complete;
 		
 		public String getHex() {

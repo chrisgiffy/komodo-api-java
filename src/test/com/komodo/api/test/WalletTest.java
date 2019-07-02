@@ -7,7 +7,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -24,6 +26,12 @@ import com.komodo.api.models.wallet.ListUnspentOutputModel;
 import com.komodo.api.models.wallet.SetPubKeyOutputModel;
 import com.komodo.api.models.wallet.TransactionOutputModel;
 import com.komodo.api.models.wallet.WalletInfoOutputModel;
+import com.komodo.api.models.wallet.ZListReceivedByAddressOutputModel;
+import com.komodo.api.models.wallet.ZListUnspentOutputModel;
+import com.komodo.api.models.wallet.ZOperationResultOutputModel;
+import com.komodo.api.models.wallet.ZOperationStatusOutputModel;
+import com.komodo.api.models.wallet.ZShieldCoinbaseOutputModel;
+import com.komodo.api.models.wallet.ZTotalBalanceOutputModel;
 import com.komodo.api.sections.WalletApi;
 
 public class WalletTest {
@@ -581,7 +589,6 @@ public class WalletTest {
 		OutputModel output = walletApi.backupWallet(config, "mybackup");
 		assertNotNull(output);
 		assertNotNull(output.getResult());
-		System.out.println(output.getResult());
 		assertNull(output.getError());
 	}
 	
@@ -598,8 +605,520 @@ public class WalletTest {
 		OutputModel output = walletApi.dumpPrivKey(config, "RTcwYaQPDVN7V9SdfFHARWnoB7vcpSfdvs");
 		assertNotNull(output);
 		assertNotNull(output.getResult());
-		System.out.println(output.getResult());
 		assertNull(output.getError());
 	}
-
+	
+	@Test
+	public void testSendMany() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		Map<String,Double> addressAmountMap = new HashMap<String,Double>();
+		addressAmountMap.put("RTcwYaQPDVN7V9SdfFHARWnoB7vcpSfdvs", 10.0);
+		addressAmountMap.put("RWTY5bvzbeohdsYm7zb55D3dmgnHjb4crr", 10.0);
+		addressAmountMap.put("RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA", 10.0);
+		OutputModel output = walletApi.sendMany(config, "", addressAmountMap, 1, "test");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testSendManyParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		Map<String,Double> addressAmountMap = new HashMap<String,Double>();
+		addressAmountMap.put("RTcwYaQPDVN7V9SdfFHARWnoB7vcpSfdvs", 10.0);
+		addressAmountMap.put("RWTY5bvzbeohdsYm7zb55D3dmgnHjb4crr", 10.0);
+		addressAmountMap.put("RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA", 10.0);
+		List<String> addresses = new ArrayList<String>();
+		addresses.add("RTcwYaQPDVN7V9SdfFHARWnoB7vcpSfdvs");
+		addresses.add("RWTY5bvzbeohdsYm7zb55D3dmgnHjb4crr");
+		addresses.add("RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA");
+		OutputModel output = walletApi.sendMany(config, "", addressAmountMap, 1, "test", addresses);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testSendManyParamsSingleAddress() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		Map<String,Double> addressAmountMap = new HashMap<String,Double>();
+		addressAmountMap.put("RTcwYaQPDVN7V9SdfFHARWnoB7vcpSfdvs", 10.0);
+		addressAmountMap.put("RWTY5bvzbeohdsYm7zb55D3dmgnHjb4crr", 10.0);
+		addressAmountMap.put("RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA", 10.0);
+		OutputModel output = walletApi.sendMany(config, "", addressAmountMap, 1, "test", "RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZExportKey() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zExportKey(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZExportViewingKey() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zExportViewingKey(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZExportWallet() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zExportWallet(config, "test");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetBalance() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zgetBalance(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetBalanceMinConf() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zgetBalance(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy",1);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetNewAddress() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zGetNewAddress(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetOperationResult() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZOperationResultOutputModel output = walletApi.zGetOperationResult(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetOperationResultParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		List<String> operationIds = new ArrayList<String>();
+		operationIds.add("opid-47e12224-8477-4cd4-852d-d8c3ddbc6375");
+		ZOperationResultOutputModel output = walletApi.zGetOperationResult(config, operationIds);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetOperationStatus() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZOperationStatusOutputModel output = walletApi.zGetOperationStatus(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetOperationStatusParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		List<String> operationIds = new ArrayList<String>();
+		operationIds.add("opid-47e12224-8477-4cd4-852d-d8c3ddbc6375");
+		ZOperationStatusOutputModel output = walletApi.zGetOperationStatus(config, operationIds);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetTotalBalance() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZTotalBalanceOutputModel output = walletApi.zGetTotalBalance(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetTotalBalanceWatchOnlyTrue() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZTotalBalanceOutputModel output = walletApi.zGetTotalBalance(config, 1, true);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZGetTotalBalanceWatchOnlyFalse() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZTotalBalanceOutputModel output = walletApi.zGetTotalBalance(config, 1, false);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZImportKey() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zImportKey(config, "DONOTUSExxxxxxxxxxxxxxxxBP6ipkmBxmEQbugcCQ16vUaWGFK");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZImportKeyParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zImportKey(config, "DONOTUSExxxxxxxxxxxxxxxxBP6ipkmBxmEQbugcCQ16vUaWGFK", "no", 0);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZImportViewingKey() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zImportViewingKey(config, "ZiVtfYkeyRY3y8Wykm5zjLcnssEkVrkej6j3kQ5B1AE2qp2F3VsKzpoXTzD82hrvMjWB9WxCHbXXrXax2ceyHLWrnQDaMrMja");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZImportViewingKeyParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zImportViewingKey(config, "ZiVtfYkeyRY3y8Wykm5zjLcnssEkVrkej6j3kQ5B1AE2qp2F3VsKzpoXTzD82hrvMjWB9WxCHbXXrXax2ceyHLWrnQDaMrMja", "no", 0);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZImportWallet() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		OutputModel output = walletApi.zImportWallet(config, "test");
+		assertNotNull(output);
+		assertNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListAddressesFalse() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ListResultOutModel output = walletApi.zListAddresses(config, false);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListAddressesTrue() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ListResultOutModel output = walletApi.zListAddresses(config, true);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListOperationIds() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ListResultOutModel output = walletApi.zListOperationIds(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListOperationIdsParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ListResultOutModel output = walletApi.zListOperationIds(config, "success");
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListReceivedByAddress() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZListReceivedByAddressOutputModel output = walletApi.zListReceivedByAddress(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy", 1);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListUnspent() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZListUnspentOutputModel output = walletApi.zListUnspent(config);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZListUnspentParams() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		List<String> addresses =  new ArrayList<String>();
+		addresses.add("zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy");
+		ZListUnspentOutputModel output = walletApi.zListUnspent(config, 1, 6, true, addresses);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertTrue(0 < output.getResult().size());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZSendMany() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		Map<String,Double> addresses =  new HashMap<String,Double>();
+		addresses.put("zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy",0.001);
+		OutputModel output = walletApi.zSendMany(config, "zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy", addresses);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	@Test
+	public void testZShieldCoinBase() {
+		Configurations config = new Configurations();
+		config.setId("curlTest");
+		config.setIp("127.0.0.1");
+		config.setPort("8251");
+		config.setUsername("user1922998069");
+		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
+		
+		WalletApi walletApi = new WalletApi();
+		ZShieldCoinbaseOutputModel output = walletApi.zShieldCoinBase(config, "RX8JcC2RPw57i2u4cHFbLttSsnBC4so9XA", 
+				"zs1m89nkzw3cqc6ds9ujttrrt2q3qnplzf8annd0xl468k4w6sr92xsfkcxwnhg8wumejsmxuwujsy", 0.001, 50);
+		assertNotNull(output);
+		assertNotNull(output.getResult());
+		assertNull(output.getError());
+	}
+	
+	
 }

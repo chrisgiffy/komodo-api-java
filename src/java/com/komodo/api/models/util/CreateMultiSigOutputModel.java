@@ -1,6 +1,6 @@
 package com.komodo.api.models.util;
 
-import com.komodo.api.models.wallet.WalletInfoOutputModel.Result;
+import com.google.gson.annotations.SerializedName;
 
 public class CreateMultiSigOutputModel {
 	private String error;
@@ -32,7 +32,9 @@ public class CreateMultiSigOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("address")
 		private String address;
+		@SerializedName("redeemScript")
 		private String redeemScript;
 		public String getAddress() {
 			return address;
