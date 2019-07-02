@@ -1,5 +1,7 @@
 package com.komodo.api.models.address;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GetAddressBalanceOutputModel {
 		private String error;
 		private String id;
@@ -30,7 +32,9 @@ public class GetAddressBalanceOutputModel {
 		}
 
 		public static class Result{
+			@SerializedName("balance")
 			private double balance;
+			@SerializedName("received")
 		    private double received;
 			public double getBalance() {
 				return balance;

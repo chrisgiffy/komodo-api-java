@@ -1,5 +1,7 @@
 package com.komodo.api.models.control;
 
+import com.google.gson.annotations.SerializedName;
+
 public class GetInfoModel {
 	private String error;
 	private String id;
@@ -30,36 +32,67 @@ public class GetInfoModel {
 	}
 
 	public static class Result{
+		@SerializedName("version")
 		private int version;
-	    private int protocolVersion;
-	    private String kmdVersion;
-	    private int notarized;
-	    private int prevMoMheight;
-	    private String notarizedHash;
-	    private String notarizedTxid;
-	    private String notarizedTxidHeight;
-	    private int kmdNotarizedHeight;
-	    private int notarizedConfirms;
-	    private int walletVersion;
-	    private double balance;
-	    private int blocks;
-	    private int longestChain;
-	    private int timeOffset;
-	    private int tipTime;
-	    private int connections;
-	    private String proxy;
-	    private double difficulty;
-	    private boolean testNet;
-	    private int keypoolOldest;
-	    private int keypoolSsize;
-	    private double relayFee;
-	    private int payTxFee;
-	    private String errors;
-	    private String name;
-	    private int p2pPort;
-	    private int rpcPort;
-	    private double magic;
-	    private int premine;
+		@SerializedName("protocolversion")
+		private int protocolVersion;
+		@SerializedName("KMDversion")
+		private String kmdVersion;
+		@SerializedName("notarized")
+		private int notarized;
+		@SerializedName("prevMoMheight")
+		private int prevMoMheight;
+		@SerializedName("notarizedhash")
+		private String notarizedHash;
+		@SerializedName("notarizedtxid")
+		private String notarizedTxid;
+		@SerializedName("notarizedtxid_height")
+		private String notarizedTxidHeight;
+		@SerializedName("KMDnotarized_height")
+		private int kmdNotarizedHeight;
+		@SerializedName("notarized_confirms")
+		private int notarizedConfirms;
+		@SerializedName("walletversion")
+		private int walletVersion;
+		@SerializedName("balance")
+		private double balance;
+		@SerializedName("blocks")
+		private int blocks;
+		@SerializedName("")
+		private int longestChain;
+		@SerializedName("timeoffset")
+		private int timeOffset;
+		@SerializedName("")
+		private int tipTime;
+		@SerializedName("connections")
+		private int connections;
+		@SerializedName("proxy")
+		private String proxy;
+		@SerializedName("difficulty")
+		private double difficulty;
+		@SerializedName("testnet")
+		private boolean testNet;
+		@SerializedName("keypoololdest")
+		private int keypoolOldest;
+		@SerializedName("keypoolsize")
+		private int keypoolSize;
+		@SerializedName("relayfee")
+		private double relayFee;
+		@SerializedName("paytxfee")
+		private int payTxFee;
+		@SerializedName("errors")
+		private String errors;
+		@SerializedName("name")
+		private String name;
+		@SerializedName("p2pport")
+		private int p2pPort;
+		@SerializedName("rpcport")
+		private int rpcPort;
+		@SerializedName("magic")
+		private int magic;
+		@SerializedName("premine")
+		private int premine;
+		
 		public int getVersion() {
 			return version;
 		}
@@ -186,11 +219,11 @@ public class GetInfoModel {
 		public void setKeypoolOldest(int keypoolOldest) {
 			this.keypoolOldest = keypoolOldest;
 		}
-		public int getKeypoolSsize() {
-			return keypoolSsize;
+		public int getKeypoolSize() {
+			return keypoolSize;
 		}
-		public void setKeypoolSsize(int keypoolSsize) {
-			this.keypoolSsize = keypoolSsize;
+		public void setKeypoolSize(int keypoolSize) {
+			this.keypoolSize = keypoolSize;
 		}
 		public double getRelayFee() {
 			return relayFee;
@@ -228,10 +261,10 @@ public class GetInfoModel {
 		public void setRpcPort(int rpcPort) {
 			this.rpcPort = rpcPort;
 		}
-		public double getMagic() {
+		public int getMagic() {
 			return magic;
 		}
-		public void setMagic(double magic) {
+		public void setMagic(int magic) {
 			this.magic = magic;
 		}
 		public int getPremine() {

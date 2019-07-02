@@ -1,5 +1,7 @@
 package com.komodo.api.models.util;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ValidateAddressOutputModel {
 	private String error;
 	private String id;
@@ -30,15 +32,25 @@ public class ValidateAddressOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("isvalid")
 		private boolean isValid;
+		@SerializedName("address")
 		private String address;
+		@SerializedName("scriptPubKey")
 		private String scriptPubKey;
+		@SerializedName("segid")
 		private int segId;
+		@SerializedName("ismine")
 		private boolean isMine;
+		@SerializedName("iswatchonly")
 		private boolean  isWatchonly;
+		@SerializedName("isscript")
 		private boolean isScript;
+		@SerializedName("pubkey")
 		private String pubKey;
+		@SerializedName("iscompressed")
 		private boolean isCompressed;
+		@SerializedName("account")
 		private String account; 
 		
 		public boolean getIsValid() {

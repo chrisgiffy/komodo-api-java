@@ -2,6 +2,8 @@ package com.komodo.api.models.network;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class AddedNodeInfoOutputModel {
 	
 	private String error;
@@ -33,9 +35,11 @@ public class AddedNodeInfoOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("addednode")
 		private String addednode;
+		@SerializedName("connected")
 		private boolean connected;
-		
+		@SerializedName("addresses")
 		List<NwAddress> addresses;
 		public String getAddednode() {
 			return addednode;
@@ -58,7 +62,9 @@ public class AddedNodeInfoOutputModel {
 	}
 	
 	public static class NwAddress{
+		@SerializedName("address")
 		private String address;
+		@SerializedName("connected")
 		private String connected;
 		public String getConnected() {
 			return connected;

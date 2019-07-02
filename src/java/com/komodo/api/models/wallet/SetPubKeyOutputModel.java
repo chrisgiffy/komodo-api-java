@@ -1,8 +1,9 @@
-package com.komodo.api.models.util;
+package com.komodo.api.models.wallet;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ZValidateAddressOutputModel {
+public class SetPubKeyOutputModel {
+	
 	private String error;
 	private String id;
 	private Result result;
@@ -32,52 +33,30 @@ public class ZValidateAddressOutputModel {
 	}
 
 	public static class Result{
-		@SerializedName("isvalid")
-		private boolean isValid;
 		@SerializedName("address")
 		private String address;
-		@SerializedName("payingkey")
-		private String payingKey;
-		@SerializedName("transmissionkey")
-		private String transmissionKey;
 		@SerializedName("ismine")
 		private boolean isMine;
-		
-		public boolean getIsValid() {
-			return isValid;
-		}
-		public void setIsValid(boolean isValid) {
-			this.isValid = isValid;
-		}
+		@SerializedName("pubkey")
+		private String pubKey;
 		public String getAddress() {
 			return address;
 		}
 		public void setAddress(String address) {
 			this.address = address;
 		}
-		
-		
-		public boolean getIsMine() {
+		public boolean isMine() {
 			return isMine;
 		}
-		public void setIsMine(boolean isMine) {
+		public void setMine(boolean isMine) {
 			this.isMine = isMine;
 		}
-		public String getPayingKey() {
-			return payingKey;
+		public String getPubKey() {
+			return pubKey;
 		}
-		public void setPayingKey(String payingKey) {
-			this.payingKey = payingKey;
+		public void setPubKey(String pubKey) {
+			this.pubKey = pubKey;
 		}
-		public String getTransmissionKey() {
-			return transmissionKey;
-		}
-		public void setTransmissionKey(String transmissionKey) {
-			this.transmissionKey = transmissionKey;
-		}
-		
-		
-		
 	}
 
 }
