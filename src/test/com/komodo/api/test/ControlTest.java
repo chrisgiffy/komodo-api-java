@@ -66,7 +66,7 @@ public class ControlTest {
 	 * "pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
 	 * 
 	 * ControlApi control = new ControlApi(); OutputModel output =
-	 * control.stop(config); System.out.println(output.getResult());
+	 * control.stop(config);
 	 * assertEquals(null, output.getError()); assertNotEquals(null,
 	 * output.getResult()); assertNotEquals("", output.getResult()); }
 	 */

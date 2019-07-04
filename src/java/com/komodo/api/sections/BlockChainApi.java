@@ -704,7 +704,6 @@ public class BlockChainApi {
 	 */
 	public ListResultOutModel verifyTxOutProof(Configurations config, String proofString) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.VERIFY_TXOUT_PROOF, StringConstants.DOUBLE_QUOTE+proofString+StringConstants.DOUBLE_QUOTE);
-		System.out.println(output);
 		ListResultOutModel outputModel = new Gson().fromJson(output, ListResultOutModel.class);
 		return outputModel;
 	}

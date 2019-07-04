@@ -957,7 +957,6 @@ public class WalletApi {
 		params.append(StringConstants.COMMA);
 		params.append(limit);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.Z_SHIELD_COIN_BASE, params.toString());
-		System.out.println(output);
 		ZShieldCoinbaseOutputModel outputModel = new Gson().fromJson(output, ZShieldCoinbaseOutputModel.class);
 		return outputModel;
 	}

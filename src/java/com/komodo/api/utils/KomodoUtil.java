@@ -59,7 +59,6 @@ public class KomodoUtil {
 			String temp;
 			while ((temp = br.readLine()) != null) {
 				output.append(temp);
-				//System.out.println(temp);
 			}
 
 			conn.disconnect();

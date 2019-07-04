@@ -40,7 +40,6 @@ public class GenerateApi {
 	public GetGenerateOutputModel getGenerate(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_GENERATE, null);
 		GetGenerateOutputModel outputModel = new Gson().fromJson(output, GetGenerateOutputModel.class);
-		System.out.println(output);
 		return outputModel;
 	}
 	

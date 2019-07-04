@@ -239,7 +239,6 @@ public class MiningApi {
 	 */
 	public OutputModel submitBlock(Configurations config, String hexData ) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SUBMIT_BLOCK, StringConstants.DOUBLE_QUOTE+hexData+StringConstants.DOUBLE_QUOTE);
-		System.out.println(output);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}

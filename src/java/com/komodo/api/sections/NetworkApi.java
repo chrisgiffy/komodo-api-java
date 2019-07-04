@@ -230,7 +230,6 @@ public class NetworkApi {
 		params.append(StringConstants.COMMA);
 		params.append(banTime);
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.SET_BAN, params.toString());
-		System.out.println(output);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
