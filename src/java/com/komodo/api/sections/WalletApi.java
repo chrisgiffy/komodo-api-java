@@ -29,6 +29,11 @@ import com.komodo.api.models.wallet.ZShieldCoinbaseOutputModel;
 import com.komodo.api.models.wallet.ZTotalBalanceOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class WalletApi {
 	
 	public OutputModel backupWallet(Configurations config, String destination) {
