@@ -7,6 +7,11 @@ import com.komodo.api.models.Configurations;
 import com.komodo.api.models.StringResultOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software.
+ * @author Giffy Chris
+ *
+ */
 public class JumblrApi {
 	
 	/**

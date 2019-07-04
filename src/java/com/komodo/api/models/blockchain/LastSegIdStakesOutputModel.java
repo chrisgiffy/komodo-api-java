@@ -4,6 +4,11 @@ import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class LastSegIdStakesOutputModel {
 	private String error;
 	private String id;

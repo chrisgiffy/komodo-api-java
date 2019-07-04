@@ -11,8 +11,20 @@ import java.util.Base64;
 
 import com.komodo.api.models.Configurations;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class KomodoUtil {
 	
+	/**
+	 * This method generates a request to the KOMODO server and processess the output as a raw string
+	 * @param config
+	 * @param tx
+	 * @param params
+	 * @return String
+	 */
 	public static String fireKomodo(Configurations config, String tx, String params) {
 
 		StringBuilder output = new StringBuilder("");

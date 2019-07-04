@@ -2,6 +2,11 @@ package com.komodo.api.models.network;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class DeprecationInfoOutputModel {
 	
 	private String error;

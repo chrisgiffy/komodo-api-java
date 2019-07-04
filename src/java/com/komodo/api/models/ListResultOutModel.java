@@ -2,6 +2,11 @@ package com.komodo.api.models;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ListResultOutModel {
 	private List<String> result;
 	private String error;

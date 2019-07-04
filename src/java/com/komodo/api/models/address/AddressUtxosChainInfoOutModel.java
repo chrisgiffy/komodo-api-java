@@ -5,6 +5,11 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 import com.komodo.api.models.Utxos;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class AddressUtxosChainInfoOutModel {
 	private String error;
 	private String id;

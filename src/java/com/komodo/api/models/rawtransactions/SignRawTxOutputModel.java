@@ -1,5 +1,10 @@
 package com.komodo.api.models.rawtransactions;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class SignRawTxOutputModel {
 	
 	private String error;

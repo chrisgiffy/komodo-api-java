@@ -9,6 +9,11 @@ import com.komodo.api.models.OutputModel;
 import com.komodo.api.models.generate.GetGenerateOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software.
+ * @author Giffy Chris
+ *
+ */
 public class GenerateApi {
 
 	/**
@@ -26,6 +31,7 @@ public class GenerateApi {
 	}
 	
 	/**
+	 * getgenerate
 	 * The getgenerate method returns a boolean value indicating the server's mining status.
 	 * The default value is false.
 	 * @param config
@@ -38,12 +44,13 @@ public class GenerateApi {
 	}
 	
 	/**
+	 * setgenerate generate ( genproclimit )
 	 * The setgenerate method allows the user to set the generate property in the coin daemon to true or false, 
 	 * thus turning generation (mining/staking) on or off.
 	 * Generation is limited to genproclimit processors. 
 	 * Set genproclimit to -1 to use maximum available processors.
 	 * @param config
-	 * @param generate
+	 * @param generate (set to true to turn on generation; set to off to turn off generation)
 	 * @return OutputModel
 	 */
 	public OutputModel setGenerate(Configurations config, boolean generate) {
@@ -53,13 +60,14 @@ public class GenerateApi {
 	}
 	
 	/**
+	 * setgenerate generate ( genproclimit )
 	 * The setgenerate method allows the user to set the generate property in the coin daemon to true or false, 
 	 * thus turning generation (mining/staking) on or off.
 	 * Generation is limited to genproclimit processors. 
 	 * Set genproclimit to -1 to use maximum available processors.
 	 * @param config
-	 * @param generate
-	 * @param genProcLimit
+	 * @param generate (set to true to turn on generation; set to off to turn off generation)
+	 * @param genProcLimit (set the processor limit for when generation is on; use value "-1" for unlimited)
 	 * @return OutputModel
 	 */
 	public OutputModel setGenerate(Configurations config, boolean generate, int genProcLimit) {

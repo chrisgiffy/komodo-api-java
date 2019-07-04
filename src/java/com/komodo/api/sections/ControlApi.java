@@ -16,6 +16,7 @@ import com.komodo.api.utils.KomodoUtil;
 public class ControlApi {
 
 	/**
+	 * getinfo
 	 * The getinfo method returns an object containing various state info
 	 * @param config
 	 * @return GetInfoModel
@@ -27,9 +28,10 @@ public class ControlApi {
 	}
 	
 	/**
+	 * help ( "command" )
 	 * The help method lists all commands, or all information for a specified command.
 	 * @param config
-	 * @return
+	 * @return OutputModel
 	 */
 	public OutputModel help(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, null);
@@ -38,10 +40,11 @@ public class ControlApi {
 	}
 
 	/**
+	 * help ( "command" )
 	 * The help method lists all commands, or all information for a specified command.
 	 * @param config
 	 * @param command
-	 * @return
+	 * @return OutputModel
 	 */
 	public OutputModel help(Configurations config, String command) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.HELP, StringConstants.DOUBLE_QUOTE+command+StringConstants.DOUBLE_QUOTE);
@@ -50,12 +53,13 @@ public class ControlApi {
 	}
 	
 	/**
+	 * stop
 	 * The stop method instructs the coin daemon to shut down.
 	 * The amount of time it takes to shut down the chain will vary depending on the chain's current state.
 	 * Forcefully stopping the chain should be avoided, as it may cause a corruption in the local database. 
 	 * In the event of a corrupted database, the user will need to resync.
 	 * @param config
-	 * @return
+	 * @return OutputModel
 	 */
 	public OutputModel stop(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.STOP, null);

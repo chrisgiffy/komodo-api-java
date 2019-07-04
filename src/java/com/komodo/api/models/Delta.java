@@ -2,6 +2,11 @@ package com.komodo.api.models;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class Delta {
 	@SerializedName("satoshis")
 	private double satoshis;

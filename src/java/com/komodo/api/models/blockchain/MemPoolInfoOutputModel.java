@@ -1,5 +1,10 @@
 package com.komodo.api.models.blockchain;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class MemPoolInfoOutputModel {
 	
 	private String error;

@@ -1,5 +1,10 @@
 package com.komodo.api.constants;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ModeConstants {
 	//MINING GET BLOCK TEMPLATE MODES
 	public static final String TEMPLATE = "template";

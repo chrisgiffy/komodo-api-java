@@ -2,6 +2,11 @@ package com.komodo.api.models.network;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class AddedNodeInfoOutputModel {
 	
 	private String error;

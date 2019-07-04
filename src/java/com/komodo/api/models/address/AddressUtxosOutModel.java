@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.komodo.api.models.Utxos;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class AddressUtxosOutModel {
 	private String error;
 	private String id;

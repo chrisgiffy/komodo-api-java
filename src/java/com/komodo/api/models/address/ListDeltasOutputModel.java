@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.komodo.api.models.Delta;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ListDeltasOutputModel {
 	private String error;
 	private String id;

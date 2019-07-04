@@ -5,9 +5,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.komodo.api.constants.KomodoCommandsConstants;
 import com.komodo.api.constants.StringConstants;
-import com.komodo.api.models.ListResultOutModel;
 import com.komodo.api.models.Configurations;
-import com.komodo.api.models.OutputModel;
+import com.komodo.api.models.ListResultOutModel;
 import com.komodo.api.models.address.AddressMempoolOutModel;
 import com.komodo.api.models.address.AddressUtxosChainInfoOutModel;
 import com.komodo.api.models.address.AddressUtxosOutModel;
@@ -17,6 +16,11 @@ import com.komodo.api.models.address.ListDeltasOutputModel;
 import com.komodo.api.models.address.SnapshotOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software.
+ * @author Giffy Chris
+ *
+ */
 public class AddressApi {
 
 	/**
@@ -311,6 +315,7 @@ public class AddressApi {
 	}
 
 	/**
+	 * getsnapshot top
 	 * The getsnapshot method returns a snapshot of addresses and their amounts at the asset chain's current height.
 	 * The method requires addressindex to be enabled
 	 * @param config
@@ -325,6 +330,7 @@ public class AddressApi {
 	}
 	
 	/**
+	 * getsnapshot top
 	 * The getsnapshot method returns a snapshot of addresses and their amounts at the asset chain's current height.
 	 * The method requires addressindex to be enabled
 	 * @param config

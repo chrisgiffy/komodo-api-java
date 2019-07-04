@@ -1,5 +1,10 @@
 package com.komodo.api.constants;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class TemplateCapabilitiesConstant {
 	//MINING GET BLOCK TEMPLATE CAPABILITIES
 	public static final String LONG_POLL = "longpoll";

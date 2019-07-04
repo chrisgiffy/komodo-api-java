@@ -5,6 +5,11 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 import com.komodo.api.models.Delta;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class DeltasOutputWithStartEnd {
 	private String error;
 	private String id;

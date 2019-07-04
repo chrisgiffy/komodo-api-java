@@ -1,7 +1,10 @@
 package com.komodo.api.models.util;
 
-import com.komodo.api.models.wallet.WalletInfoOutputModel.Result;
-
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class CreateMultiSigOutputModel {
 	private String error;
 	private String id;

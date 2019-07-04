@@ -1,5 +1,10 @@
 package com.komodo.api.models.address;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class GetAddressBalanceOutputModel {
 		private String error;
 		private String id;

@@ -1,5 +1,10 @@
 package com.komodo.api.constants;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class StringConstants {
 	
 	public static final String COMMA = ",";

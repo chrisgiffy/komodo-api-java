@@ -1,5 +1,10 @@
 package com.komodo.api.models;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class StringResultOutputModel {
 		private String error;
 		private Result result;

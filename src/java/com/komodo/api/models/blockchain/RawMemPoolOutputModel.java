@@ -5,6 +5,11 @@ import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class RawMemPoolOutputModel {
 	private String error;
 	private String id;

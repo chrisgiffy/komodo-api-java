@@ -1,5 +1,10 @@
 package com.komodo.api.constants;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class KomodoCommandsConstants {
 	//ADDRESS BLOCK
 	public static final String GET_ADDRESS_BALANCE = "getaddressbalance";

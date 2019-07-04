@@ -14,6 +14,11 @@ import com.komodo.api.models.util.ValidateAddressOutputModel;
 import com.komodo.api.models.util.ZValidateAddressOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
+/**
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software.
+ * @author Giffy Chris
+ *
+ */
 public class UtilApi {
 	
 /**

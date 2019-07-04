@@ -1,5 +1,10 @@
 package com.komodo.api.models.control;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class GetInfoModel {
 	private String error;
 	private String id;

@@ -2,6 +2,11 @@ package com.komodo.api.models.mining;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class MiningSubsidyOutputModel {
 
 	private String error;

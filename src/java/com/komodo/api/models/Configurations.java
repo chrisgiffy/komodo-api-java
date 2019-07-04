@@ -1,5 +1,10 @@
 package com.komodo.api.models;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class Configurations {
 	
 	private String ip;

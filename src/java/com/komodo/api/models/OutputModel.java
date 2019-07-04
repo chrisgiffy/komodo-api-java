@@ -1,6 +1,11 @@
 package com.komodo.api.models;
 
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class OutputModel {
 	
 	private String result;

@@ -2,6 +2,11 @@ package com.komodo.api.models.util;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class DecodeCCOpretOutputModel {
 	private String error;
 	private String id;

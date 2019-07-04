@@ -1,5 +1,10 @@
 package com.komodo.api.models.util;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ValidateAddressOutputModel {
 	private String error;
 	private String id;

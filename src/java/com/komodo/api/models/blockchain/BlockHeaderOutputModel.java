@@ -2,6 +2,11 @@ package com.komodo.api.models.blockchain;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class BlockHeaderOutputModel {
 	private String error;
 	private String id;
