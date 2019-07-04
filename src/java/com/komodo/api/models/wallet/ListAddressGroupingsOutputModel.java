@@ -2,6 +2,11 @@ package com.komodo.api.models.wallet;
 
 import java.util.List;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ListAddressGroupingsOutputModel {
 	
 	private String error;

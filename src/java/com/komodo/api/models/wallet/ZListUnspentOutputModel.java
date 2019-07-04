@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ZListUnspentOutputModel {
 	private String id;
 	private String error;
