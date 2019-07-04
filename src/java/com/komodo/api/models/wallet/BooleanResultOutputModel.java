@@ -1,5 +1,10 @@
 package com.komodo.api.models.wallet;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class BooleanResultOutputModel {
 	private String id;
 	private String error;
