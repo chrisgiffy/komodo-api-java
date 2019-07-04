@@ -1,5 +1,7 @@
 package com.komodo.api.models.util;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
@@ -35,10 +37,15 @@ public class ZValidateAddressOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("isvalid")
 		private boolean isValid;
+		@SerializedName("address")
 		private String address;
+		@SerializedName("payingkey")
 		private String payingKey;
+		@SerializedName("transmissionkey")
 		private String transmissionKey;
+		@SerializedName("ismine")
 		private boolean isMine;
 		
 		public boolean getIsValid() {

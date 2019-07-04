@@ -1,16 +1,18 @@
 package com.komodo.api.models.blockchain;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
  *
  */
 public class MemPoolInfoOutputModel {
-	
+
 	private String error;
 	private String id;
 	private Result result;
-	
+
 	public String getError() {
 		return error;
 	}
@@ -36,8 +38,11 @@ public class MemPoolInfoOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("size")
 		private int size;
+		@SerializedName("bytes")
 		private int bytes;
+		@SerializedName("usage")
 		private int usage;
 		public int getSize() {
 			return size;

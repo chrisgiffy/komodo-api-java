@@ -39,6 +39,7 @@ public class MinerIdsOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("mined")
 		private List<Mined> mined;
 
 		public List<Mined> getMined() {

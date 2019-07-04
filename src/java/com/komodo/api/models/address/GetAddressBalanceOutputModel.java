@@ -1,5 +1,8 @@
 package com.komodo.api.models.address;
 
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
@@ -35,7 +38,9 @@ public class GetAddressBalanceOutputModel {
 		}
 
 		public static class Result{
+			@SerializedName("balance")
 			private double balance;
+			@SerializedName("received")
 		    private double received;
 			public double getBalance() {
 				return balance;

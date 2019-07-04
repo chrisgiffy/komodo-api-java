@@ -1,13 +1,9 @@
-package com.komodo.api.models.util;
+package com.komodo.api.models.wallet;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * 
- * @author Giffy Chris
- *
- */
-public class CreateMultiSigOutputModel {
+public class SetPubKeyOutputModel {
+	
 	private String error;
 	private String id;
 	private Result result;
@@ -39,20 +35,28 @@ public class CreateMultiSigOutputModel {
 	public static class Result{
 		@SerializedName("address")
 		private String address;
-		@SerializedName("redeemScript")
-		private String redeemScript;
+		@SerializedName("ismine")
+		private boolean isMine;
+		@SerializedName("pubkey")
+		private String pubKey;
 		public String getAddress() {
 			return address;
 		}
 		public void setAddress(String address) {
 			this.address = address;
 		}
-		public String getRedeemScript() {
-			return redeemScript;
+		public boolean isMine() {
+			return isMine;
 		}
-		public void setRedeemScript(String redeemScript) {
-			this.redeemScript = redeemScript;
+		public void setMine(boolean isMine) {
+			this.isMine = isMine;
 		}
-		
+		public String getPubKey() {
+			return pubKey;
+		}
+		public void setPubKey(String pubKey) {
+			this.pubKey = pubKey;
+		}
 	}
+
 }

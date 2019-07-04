@@ -1,5 +1,7 @@
 package com.komodo.api.models.wallet;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
@@ -36,13 +38,21 @@ public class WalletInfoOutputModel {
 	}
 
 	public static class Result{
+		@SerializedName("walletversion")
 		private int walletVersion;
+		@SerializedName("balance")
 		private double balance;
+		@SerializedName("unconfirmed_balance")
 		private double unconfirmedBalance;
+		@SerializedName("immature_balance")
 		private double immatureBalance;
+		@SerializedName("txcount")
 		private int txCount;
+		@SerializedName("keypoololdest")
 		private long keyPoolOldest;
+		@SerializedName("keypoolsize")
 		private int keypoolSize;
+		@SerializedName("paytxfee")
 		private double payTxFee;
 		public int getWalletVersion() {
 			return walletVersion;

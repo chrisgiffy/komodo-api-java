@@ -2,33 +2,55 @@ package com.komodo.api.models.wallet;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
  *
  */
 public class TransactionOutputModel {
+	@SerializedName("amount")
 	private double amount;
+	@SerializedName("fee")
 	private double fee;
+	@SerializedName("rawconfirmations")
 	private int rawconfirmations;
+	@SerializedName("confirmations")
 	private int confirmations;
+	@SerializedName("blockhash")
 	private String blockhash;
+	@SerializedName("blockindex")
 	private int blockindex;
+	@SerializedName("blocktime")
 	private long blocktime;
+	@SerializedName("expiryheight")
 	private int expiryheight;
+	@SerializedName("txid")
 	private String txid;
+	@SerializedName("time")
 	private long time;
+	@SerializedName("timereceived")
 	private long timereceived;
+	@SerializedName("details")
 	private List<Details> details;
+	@SerializedName("hex")
 	private String hex;
 
 	public static class Details {
+		@SerializedName("account")
 		private String account;
+		@SerializedName("address")
 		private String address;
+		@SerializedName("category")
 		private String category;
+		@SerializedName("amount")
 		private double amount;
+		@SerializedName("vout")
 		private int vout;
+		@SerializedName("fee")
 		private double fee;
+		@SerializedName("size")
 		private int size;
 		public String getAccount() {
 			return account;

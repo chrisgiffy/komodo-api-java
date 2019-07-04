@@ -1,5 +1,8 @@
 package com.komodo.api.models.generate;
 
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * 
  * @author Giffy Chris
@@ -30,8 +33,11 @@ public class GetGenerateOutputModel {
 	}
 	
 	public static class Result{
+		@SerializedName("staking")
 		private boolean staking;
+		@SerializedName("generate")
 		private boolean generate;
+		@SerializedName("numthreads")
 		private int numThreads;
 		public boolean getStaking() {
 			return staking;
