@@ -30,42 +30,182 @@ import com.komodo.api.models.wallet.ZTotalBalanceOutputModel;
 import com.komodo.api.utils.KomodoUtil;
 
 /**
- * 
+ * The following RPC calls interact with the komodod software, and are made available through the komodo-cli software
  * @author Giffy Chris
  *
  */
 public class WalletApi {
 	
+	/**
+	 * addmultisigaddress nrequired [ "key", ... ]
+	 * The addmultisigaddress method adds a multi-signature address to the wallet, 
+	 * where nrequired indicates the number of keys (out of the total provided) required to execute a transaction.
+	 * The keys function as signatures, allowing multiple parties or entities to manage an account. 
+	 * Each key in the array can be an address or a hex-encoded public key.
+	 * @param config
+	 * @param nRequired
+	 * @param keysObject
+	 * @return OutputModel
+	 */
+	public OutputModel addMultiSigAddress(Configurations config, int nRequired, List<String> keysObject) {
+		StringBuilder params = new StringBuilder();
+		params.append(nRequired);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.OPEN_BRACKET);
+		for(int i = 0; i < keysObject.size(); i++) {
+			if(i > 0) {
+				params.append(StringConstants.COMMA);
+			}
+			params.append(StringConstants.DOUBLE_QUOTE);
+			params.append(keysObject.get(i));
+			params.append(StringConstants.DOUBLE_QUOTE);
+		}
+		params.append(StringConstants.CLOSE_BRACKET);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ADD_MULTI_SIG_ADDRESS, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * addmultisigaddress nrequired [ "key", ... ]
+	 * The addmultisigaddress method adds a multi-signature address to the wallet, 
+	 * where nrequired indicates the number of keys (out of the total provided) required to execute a transaction.
+	 * The keys function as signatures, allowing multiple parties or entities to manage an account. 
+	 * Each key in the array can be an address or a hex-encoded public key.
+	 * @param config
+	 * @param nRequired
+	 * @param keysObject
+	 * @param address
+	 * @return OutputModel
+	 */
+	public OutputModel addMultiSigAddress(Configurations config, int nRequired, List<String> keysObject, String address) {
+		StringBuilder params = new StringBuilder();
+		params.append(nRequired);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.OPEN_BRACKET);
+		for(int i = 0; i < keysObject.size(); i++) {
+			if(i > 0) {
+				params.append(StringConstants.COMMA);
+			}
+			params.append(StringConstants.DOUBLE_QUOTE);
+			params.append(keysObject.get(i));
+			params.append(StringConstants.DOUBLE_QUOTE);
+		}
+		params.append(StringConstants.CLOSE_BRACKET);
+		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		params.append(address);
+		params.append(StringConstants.DOUBLE_QUOTE);
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ADD_MULTI_SIG_ADDRESS, params.toString());
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * backupwallet "destination"
+	 * The backupwallet method safely copies the wallet.dat file to the indicated destination. 
+	 * The destination input accepts only alphanumeric characters.
+	 * This method requires that the coin daemon have the exportdir runtime parameter enabled.
+	 * @param config
+	 * @param destination
+	 * @return OutputModel
+	 */ 
 	public OutputModel backupWallet(Configurations config, String destination) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.BACKUP_WALLET, StringConstants.DOUBLE_QUOTE+destination+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * dumpprivkey "address"
+	 * The dumpprivkey method reveals the private key corresponding to the indicated address.
+	 * @param config
+	 * @param address
+	 * @return OutputModel
+	 */
 	public OutputModel dumpPrivKey(Configurations config, String address) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DUMP_PRIV_KEY, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * dumpwallet "filename"
+	 * The dumpwallet method dumps all transparent-address wallet keys into a file, using a human-readable format.
+	 * Overwriting an existing file is not permitted. 
+	 * The destination parameter accepts only alphanumeric characters.
+	 * This method requires that the coin daemon have the exportdir runtime parameter enabled.
+	 * @param config
+	 * @param fileName
+	 * @return OutputModel
+	 */
 	public OutputModel dumpWallet(Configurations config, String fileName) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.DUMP_WALLET, StringConstants.DOUBLE_QUOTE+fileName+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * encryptwallet "passphrase"
+	 * Using the encryptwallet method will shutdown the Komodo daemon (komodod).
+	 * This feature is available only on chains where -ac_public is enabled. Chains that feature private transactions cannot use this feature.
+	 * The encryptwallet method encrypts the wallet with the indicated passphrase.
+	 * @param config
+	 * @param passPhrase
+	 * @return OutputModel
+	 */
 	public OutputModel encryptWallet(Configurations config, String passPhrase) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.ENCRYPT_WALLET, StringConstants.DOUBLE_QUOTE+passPhrase+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * getaccount "address"
+	 * The getaccount method returns the account associated with the given address
+	 * @param config
+	 * @param address
+	 * @return OutputModel
+	 */
+	public OutputModel getAccount(Configurations config, String address) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_ACCOUNT, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * getbalance ( "account" minconf includeWatchonly )
+	 * The getbalance method returns the server's total available balance.
+	 * @param config
+	 * @return OutputModel
+	 */
 	public OutputModel getBalance(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BALANCE, null);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * getbalance ( "account" minconf includeWatchonly )
+	 * The getbalance method returns the server's total available balance.
+	 * @param config
+	 * @param minConf
+	 * @return OutputModel
+	 */
+	public OutputModel getBalance(Configurations config, int minConf) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_BALANCE, StringConstants.DOUBLE_QUOTE+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+minConf);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * getbalance ( "account" minconf includeWatchonly )
+	 * The getbalance method returns the server's total available balance.
+	 * @param config
+	 * @param minConf
+	 * @param includeWatchOnly
+	 * @return OutputModel
+	 */
 	public OutputModel getBalance(Configurations config, int minConf, boolean includeWatchOnly) {
 		StringBuilder params = new StringBuilder(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.DOUBLE_QUOTE);
@@ -78,30 +218,52 @@ public class WalletApi {
 		return outputModel;
 	}
 
+	/**
+	 * getnewaddress ( "account" )
+	 * The getnewaddress method returns a new address for receiving payments.
+	 * @param config
+	 * @return OutputModel
+	 */ 
 	public OutputModel getNewAddress(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NEW_ADDRESS, null);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
-	}
-
-	public OutputModel getNewAddress(Configurations config, String account) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_NEW_ADDRESS, StringConstants.DOUBLE_QUOTE+account+StringConstants.DOUBLE_QUOTE);
-		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
-		return outputModel;
-	}
-
+	}	
+	
+	/**
+	 * getrawchangeaddress
+	 * The getrawchangeaddress returns a new address that can be used to receive change.
+	 * This is for use with raw transactions, NOT normal use.
+	 * @param config
+	 * @return OutputModel
+	 */
 	public OutputModel getRawChangeAddress(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_RAW_CHANGE_ADDRESS, null);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * getreceivedbyaddress "address" ( minconf )
+	 * The getreceivedbyaddress method returns the total amount received by the given address in transactions with at least minconf confirmations
+	 * @param config
+	 * @param address
+	 * @return OutputModel
+	 */
 	public OutputModel getReceivedByAddress(Configurations config, String address) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_RECEIVED_BY_ADDRESS, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * getreceivedbyaddress "address" ( minconf )
+	 * The getreceivedbyaddress method returns the total amount received by the given address in transactions with at least minconf confirmations
+	 * @param config
+	 * @param address
+	 * @param minConf
+	 * @return OutputModel
+	 */
 	public OutputModel getReceivedByAddress(Configurations config, String address, int minConf) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_RECEIVED_BY_ADDRESS, StringConstants.DOUBLE_QUOTE+address+
 				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+minConf);
@@ -109,6 +271,14 @@ public class WalletApi {
 		return outputModel;
 	}
 
+	/**
+	 * gettransaction "txid" ( includeWatchonly )
+	 * The gettransaction method queries detailed information about transaction txid. This command applies only to txid's that are in the user's local wallet
+	 * @param config
+	 * @param txId
+	 * @param includeWatchOnly
+	 * @return TransactionOutputModel
+	 */
 	public TransactionOutputModel getTransaction(Configurations config, String txId, boolean includeWatchOnly) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_TRANSACTION, 
 				StringConstants.DOUBLE_QUOTE+txId+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+includeWatchOnly);
@@ -118,26 +288,90 @@ public class WalletApi {
 		return txModel;
 	}
 
+	/**
+	 * getunconfirmedbalance
+	 * The getunconfirmedbalance method returns the server's total unconfirmed balance
+	 * @param config
+	 * @return OutputModel
+	 */
 	public OutputModel getUnconfirmedBalance(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_UNCONFIRMED_BALANCE, null);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * getwalletinfo
+	 * The getwalletinfo method returns an object containing various information about the wallet state.
+	 * @param config
+	 * @return WalletInfoOutputModel
+	 */
 	public WalletInfoOutputModel getWalletInfo(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.GET_WALLET_INFO, null);
 		WalletInfoOutputModel outputModel = new Gson().fromJson(output, WalletInfoOutputModel.class);
 		return outputModel;
 	}
 
-	public OutputModel importAddress(Configurations config, String address, boolean rescan, String label) {
-		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_ADDRESS, StringConstants.DOUBLE_QUOTE+address+
-				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+StringConstants.DOUBLE_QUOTE+label
-				+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+rescan);
+	/**
+	 * importaddress "address" ( "label" rescan )
+	 * The importaddress method adds an address or script (in hex) that can be watched as if it were in your wallet, 
+	 * although it cannot be used to spend.
+	 * This call can take an increased amount of time to complete if rescan is true.
+	 * @param config
+	 * @param address
+	 * @param rescan (default true)
+	 * @return OutputModel
+	 */
+	public OutputModel importAddress(Configurations config, String address, boolean rescan) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_ADDRESS, StringConstants.DOUBLE_QUOTE+address+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+rescan);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * importaddress "address" ( "label" rescan )
+	 * The importaddress method adds an address or script (in hex) that can be watched as if it were in your wallet, 
+	 * although it cannot be used to spend.
+	 * This call can take an increased amount of time to complete if rescan is true.
+	 * @param config
+	 * @param address
+	 * @param rescan (default true)
+	 * @param label (default "")
+	 * @return OutputModel
+	 */
+	public OutputModel importAddress(Configurations config, String address, boolean rescan, String label) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_ADDRESS, StringConstants.DOUBLE_QUOTE+address+
+				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+StringConstants.DOUBLE_QUOTE+label+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+rescan);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * importkey "komodoprivkey" ( "label" rescan )
+	 * The importprivkey method adds a private key to your wallet.
+	 * This call can take minutes to complete if rescan is true.
+	 * @param config
+	 * @param address
+	 * @param rescan
+	 * @return OutputModel
+	 */
+	public OutputModel importPrivKey(Configurations config, String address, boolean rescan) {
+		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_PRIV_KEY, StringConstants.DOUBLE_QUOTE+address+
+				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+rescan);
+		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
+		return outputModel;
+	}
+
+	/**
+	 * importkey "komodoprivkey" ( "label" rescan )
+	 * The importprivkey method adds a private key to your wallet.
+	 * This call can take minutes to complete if rescan is true.
+	 * @param config
+	 * @param address
+	 * @param rescan
+	 * @param label (default "")
+	 * @return OutputModel
+	 */
 	public OutputModel importPrivKey(Configurations config, String address, boolean rescan, String label) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_PRIV_KEY, StringConstants.DOUBLE_QUOTE+address+
 				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+StringConstants.DOUBLE_QUOTE+label+StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+rescan);
@@ -145,48 +379,106 @@ public class WalletApi {
 		return outputModel;
 	}
 
+	/**
+	 * importwallet "filename"
+	 * The importwallet method imports transparent-address keys from a wallet-dump file 
+	 * @param config
+	 * @param fileName
+	 * @return OutputModel
+	 */
 	public OutputModel importWallet(Configurations config, String fileName) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.IMPORT_WALLET, StringConstants.DOUBLE_QUOTE+fileName+StringConstants.DOUBLE_QUOTE);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * keypoolrefill ( newsize )
+	 * The keypoolrefill method refills the keypool
+	 * @param config
+	 * @return OutputModel
+	 */
 	public OutputModel keyPoolRefill(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KEY_POOL_REFILL, null);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * keypoolrefill ( newsize )
+	 * The keypoolrefill method refills the keypool
+	 * @param config
+	 * @param newSize
+	 * @return OutputModel
+	 */
 	public OutputModel keyPoolRefill(Configurations config, int newSize) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.KEY_POOL_REFILL, StringConstants.BLANK+newSize);
 		OutputModel outputModel = new Gson().fromJson(output, OutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * listaddressgroupings
+	 * The listaddressgroupings method lists groups of addresses which have had their common ownership made public 
+	 * by common use as inputs or as the resulting change in past transactions.
+	 * @param config
+	 * @return ListAddressGroupingsOutputModel
+	 */
 	public ListAddressGroupingsOutputModel listAddressGroupings(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_ADDRESS_GROUPINGS, null);
 		ListAddressGroupingsOutputModel outputModel = new Gson().fromJson(output, ListAddressGroupingsOutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * listlockunspent
+	 * The listlockunspent method returns a list of temporarily non-spendable outputs.
+	 * @param config
+	 * @return ListLockUnspentOutputModel
+	 */
 	public ListLockUnspentOutputModel listLockUnspent(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_LOCK_UNSPENT, null);
 		ListLockUnspentOutputModel outputModel = new Gson().fromJson(output, ListLockUnspentOutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * listreceivedbyaddress ( minconf includeempty includeWatchonly)
+	 * The listreceivedbyaddress method lists balances by receiving address
+	 * @param config
+	 * @param minConf
+	 * @param includeEmpty
+	 * @param includeWatchOnly
+	 * @return ListReceivedByAddressOutputModel
+	 */
 	public ListReceivedByAddressOutputModel listReceivedByAddress(Configurations config, int minConf, boolean includeEmpty, boolean includeWatchOnly) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_RECEIVED_BY_ADDRESS, minConf+StringConstants.COMMA+includeEmpty+StringConstants.COMMA+includeWatchOnly);
 		ListReceivedByAddressOutputModel outputModel = new Gson().fromJson(output, ListReceivedByAddressOutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * listsinceblock ( "blockhash" target-confirmations includeWatchonly )
+	 * The listsinceblock method queries all transactions in blocks since block blockhash, 
+	 * or all transactions if blockhash is omitted
+	 * @param config
+	 * @return ListInCEBlockOutputModel
+	 */
 	public ListInCEBlockOutputModel listInCeBlock(Configurations config) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_IN_CE_BLOCK, null);
 		ListInCEBlockOutputModel outputModel = new Gson().fromJson(output, ListInCEBlockOutputModel.class);
 		return outputModel;
 	}
 
+	/**
+	 * listsinceblock ( "blockhash" target-confirmations includeWatchonly )
+	 * The listsinceblock method queries all transactions in blocks since block blockhash, 
+	 * or all transactions if blockhash is omitted
+	 * @param config
+	 * @param blockHash
+	 * @param includeWatchOnly
+	 * @return ListInCEBlockOutputModel
+	 */
 	public ListInCEBlockOutputModel listInCeBlock(Configurations config, String blockHash, int targetConfirmations, boolean includeWatchOnly) {
 		String output = KomodoUtil.fireKomodo(config, KomodoCommandsConstants.LIST_IN_CE_BLOCK, StringConstants.DOUBLE_QUOTE+blockHash+
 				StringConstants.DOUBLE_QUOTE+StringConstants.COMMA+targetConfirmations+StringConstants.COMMA+includeWatchOnly);
