@@ -11,21 +11,24 @@
 - [komodo-api](https://github.com/chrisgiffy/komodo-api-java/blob/master/jar/komodo-api.jar)
 
 ### Usage:
-``` {.sourceCode .java}
->>> import com.komodo.api.sections
->>> import com.komodo.api.models.Configurations;
->>>
->>>   Configurations config = new Configurations();
->>>		config.setId("id");
->>>		config.setIp("ip");
->>>		config.setPort("rpc-port);
->>>		config.setUsername("username");
->>>		config.setPassword("password");
+```java
+import com.komodo.api.sections
+import com.komodo.api.models.Configurations;
+public class Example {
+    public static void main(String[] args) {
+      Configurations config = new Configurations();
+      config.setId("id");
+      config.setIp("ip");
+      config.setPort("rpc-port);
+      config.setUsername("username");
+      config.setPassword("password");
 
->>>   AddressApi address = new AddressApi();
->>>   GetAddressBalanceOutputModel output = address.getAddressBalance(config, addresses);
-The Result returned will be an onject depending on the function you are calling.
->>> 
+      AddressApi address = new AddressApi();
+      GetAddressBalanceOutputModel output = address.getAddressBalance(config, addresses);
+      //The Result returned will be an onject depending on the function you are calling.
+   }
+}
+ 
 ```
  - #### Create an object of **Configurations** class with following parameters to connect and authenticate to your komodo server.
  |   Argument   |                                   Description                                   |
