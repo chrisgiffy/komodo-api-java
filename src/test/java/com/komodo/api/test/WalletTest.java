@@ -518,7 +518,7 @@ public class WalletTest {
 		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
 		
 		WalletApi walletApi = new WalletApi();
-		OutputModel output = walletApi.sendToAddress(config, "RFL6GTsXxeFCoE4bWUvxAkcVJzgdYcMYXs", 0.00010, "", "", true);
+		OutputModel output = walletApi.sendToAddress(config, "RFL6GTsXxeFCoE4bWUvxAkcVJzgdYcMYXs", 100,  "donation", "seans outpost", true);
 		assertNotNull(output);
 		assertNotNull(output.getResult());
 		assertNull(output.getError());

@@ -754,7 +754,9 @@ public class WalletApi {
 		params.append(address);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.COMMA);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(amount);
+		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(StringConstants.COMMA);
 		params.append(StringConstants.DOUBLE_QUOTE);
 		params.append(comment);
