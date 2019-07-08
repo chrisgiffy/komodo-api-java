@@ -18,10 +18,10 @@
 		<java-version>1.11</java-version>
 		<!-- other plugin versions -->
 		<compiler.plugin.version>2.3.1</compiler.plugin.version>
-		<surefire.plugin.version>2.4.3</surefire.plugin.version>
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.11</maven.compiler.target>
 		<maven.compiler.source>1.11</maven.compiler.source>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 
 	<dependencies>
@@ -51,10 +51,12 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.2</version>
 				<configuration>
+					<skipTests>${skipTests}</skipTests>
 					<!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
 					<archive>
 						<manifestEntries>
 							<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+							<addClasspath>true</addClasspath>
 						</manifestEntries>
 					</archive>
 				</configuration>
