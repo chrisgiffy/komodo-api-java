@@ -166,5 +166,20 @@ public class KomodoCommandsConstants {
 	public static final String END = "end";
 	public static final String CHAININFO = "chainInfo";
 	public static final String TOP = "top";
-
+	
+	//CROSSCHAIN BLOCK
+	public static final String MIGRATE_CREATE_BURN_TRANSACTION = "migrate_createburntransaction";
+	public static final String MIGRATE_CONVERT_TO_EXPORT = "migrate_converttoexport";
+	public static final String MIGRATE_CREATE_IMPORT_TRANSACTION = "migrate_createimporttransaction";
+	public static final String MIGRATE_COMPLETE_IMPORT_TRANSACTION = "migrate_completeimporttransaction";
+	public static final String MIGRATE_CHECK_BURN_TRANSACTION_SOURCE = "migrate_checkburntransactionsource";
+	public static final String MIGRATE_CREATE_NOTARY_APPROVAL_TRANSACTION = "migrate_createnotaryapprovaltransaction";
+	public static final String SELF_IMPORT = "selfimport";
+	public static final String CALC_MOM = "calc_MoM";
+	public static final String MO_MOM_DATA = "MoMoMdata";
+	public static final String ASSET_CHAIN_PROOF = "assetchainproof";
+	public static final String GET_NOTARISATIONS_FOR_BLOCK = "getNotarisationsForBlock";
+	public static final String SCAN_NOTARISATOIONS_DB = "scanNotarisationsDB";
+	public static final String GET_IMPORTS = "getimports";
+	public static final String GET_WALLET_BURN_TRANSACTIONS = "getwalletburntransactions";
 }
