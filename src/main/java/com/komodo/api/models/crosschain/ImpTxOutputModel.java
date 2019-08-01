@@ -2,6 +2,11 @@ package com.komodo.api.models.crosschain;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * 
+ * @author Giffy Chris
+ *
+ */
 public class ImpTxOutputModel {
 	
 	private String id;
