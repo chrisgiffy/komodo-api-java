@@ -103,7 +103,7 @@ public class NetworkTest {
 		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
 		
 		NetworkApi network = new NetworkApi();
-		AddedNodeInfoOutputModel output = network.getAddedNodeInfo(config, false, "10.4.96.127:8250");
+		AddedNodeInfoOutputModel output = network.getAddedNodeInfo(config, false, "34.236.13.26:8250");
 		assertNotNull(output);
 		assertNull(output.getError());
 		assertTrue(output.getResult().size() > 0);
@@ -120,7 +120,7 @@ public class NetworkTest {
 		config.setPassword("pass8a6303a92fa07fc1792f5edf1b263a480d2c5677ad1107dc9e24c40215b2ea8e2e");
 		
 		NetworkApi network = new NetworkApi();
-		AddedNodeInfoOutputModel output = network.getAddedNodeInfo(config, true, "10.4.96.127:8250");
+		AddedNodeInfoOutputModel output = network.getAddedNodeInfo(config, true, "34.236.13.26:8250");
 		assertNotNull(output);
 		assertNull(output.getError());
 		assertTrue(output.getResult().size() > 0);
